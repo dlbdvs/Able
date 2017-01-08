@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jpec"
+        android:text="@string/jpec"
         android:textSize="20sp"
         android:layout_gravity="center"/>
     <LinearLayout
@@ -16,13 +16,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create one !"
+            android:text="@string/create_one"
             android:onClick="onClick"
             android:id="@+id/create_prog"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose one !"
+            android:text="@string/choose_one"
             android:onClick="onClick"
             android:id="@+id/choose_prog"/>
     </LinearLayout>

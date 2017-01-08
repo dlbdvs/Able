@@ -26,6 +26,9 @@
     <string name="done">Done</string>
     <string name="test">TEST</string>
     <string name="programme">Programme</string>
+    <string name="choose_one">Choose one !</string>
+    <string name="create_one">Create one !</string>
+    <string name="jpec">Jpec</string>
     <string-array name="listofexos">
         <item>Leg</item>
         <item>Bulgarian Split</item>

@@ -22,6 +22,7 @@ public class CountDownActivity extends Activity {
 
     //Ajout d'un son
     MediaPlayer mySound;
+    private boolean started=true;
 
     //Pour les intent
     public String name_workout;
@@ -95,6 +96,7 @@ public class CountDownActivity extends Activity {
                     intent.putExtra("currentExo", currentExo);
                     intent.putExtra("isCreated", isCreated);
                     intent.putExtra("name_workout", name_workout);
+                    intent.putExtra("started", started);
 
                     startActivity(intent);
                     break;

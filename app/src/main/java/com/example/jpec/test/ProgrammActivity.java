@@ -15,6 +15,8 @@ import java.io.Serializable;
  */
 
 public class ProgrammActivity extends Activity implements Serializable{
+
+    private boolean started=false;
     private TextView exo8;
     private TextView exo7;
     private TextView exo6;
@@ -118,12 +120,11 @@ public class ProgrammActivity extends Activity implements Serializable{
         whichExercise();
         Intent intent = getIntent();            //Récupère les données de CountDownActivity
         Bundle b = intent.getExtras();
-
         if(b!=null)
         {
 
-                compteur_exo = (int) b.get("compteur_exo");
-                compteur_serie = (int) b.get("compteur_serie");
+            compteur_exo = (int) b.get("compteur_exo");
+            compteur_serie = (int) b.get("compteur_serie");
             if(b.get("isCreated") != null){
                 isCreated=(boolean) b.get("isCreated");
             }
@@ -144,11 +145,17 @@ public class ProgrammActivity extends Activity implements Serializable{
                 currentExo =intent.getParcelableExtra("currentExo");
 
             }
+            if (b.get("started") != null){
+                started=(boolean)b.get("started");
+            }
 
 
 
 
-        }
+
+            }
+
+
 
         //Initialisation des différents exos
         /*
@@ -190,6 +197,35 @@ public class ProgrammActivity extends Activity implements Serializable{
 
         start_workout=(Button)findViewById(R.id.start_workout);
         start_workout.setOnClickListener(onClick);
+
+        if (started) {
+            try {
+                setContentView(R.layout.activity_exercise);
+                whichExercise();
+                currentexo = (TextView) findViewById(R.id.current_exo);
+                currentserie = (TextView) findViewById(R.id.current_repserie);
+                if (currentExo != null) { //Test inutile
+                    currentexo.setText(currentExo.getNom());
+                    //currentserie.setText("Serie n° : "+compteur_serie+" / "+currentExo.getNbseries()+"\nReps : "+currentExo.getNbreps());
+                    currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + (int) currentExo.getRepos());
+
+                }
+                compteur_serie++;
+                //nextExercice();
+
+                done = (Button) findViewById(R.id.done);
+                done.setOnClickListener(onClick);
+            } catch (Exception e) {
+                Intent intent2 = new Intent(this, EndOfWorkout.class);
+                startActivity(intent2);
+            }
+        }
+
+
+
+
+
+
 
     }
     protected void attribution(Exercise e,TextView t, int i, LinearLayout l){

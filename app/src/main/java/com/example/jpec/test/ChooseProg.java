@@ -16,9 +16,9 @@ public class ChooseProg extends Activity {
     int compteur_serie=1;
     public boolean isCreated= true;
 
-    protected Exercise exoo1=new RegularPullUps(3,10,60.0);
-    protected Exercise exoo2=new CloseGripPullUps(3,10,60.0);
-    protected Exercise exoo3=new WidePullUps(3,10,60.0);
+    protected Exercise exoo1=new RegularPullUps(2,10,60.0);
+    protected Exercise exoo2=new CloseGripPullUps(1,10,60.0);
+    protected Exercise exoo3=new WidePullUps(1,10,60.0);
     protected Exercise exoo4;
     protected Exercise exoo5;
     protected Exercise exoo6;

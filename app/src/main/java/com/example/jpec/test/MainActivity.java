@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
 
                     break;
                 case R.id.choose_prog:
+                    Intent intent =new Intent(v.getContext(), ChooseProg.class);
+                    startActivity(intent);
 
                     break;
             }
