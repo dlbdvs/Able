@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Test</string>
+
+    <!-- Strings related to login -->
+    <string name="cancel">Cancel</string>
+    <string name="rest">Rest</string>
+    <string name="start">Start</string>
+    <string name="exercice_1">Exercice 1</string>
+    <string name="exercice_2">Exercice 2</string>
+    <string name="plus">+</string>
+    <string name="exercice_01">Exercice 1 :</string>
+    <string name="exercice_05">Exercice 5 :</string>
+    <string name="exercice_04">Exercice 4 :</string>
+    <string name="exercice_02">Exercice 2 :</string>
+    <string name="your_programm_s_name">Your programm\'s name</string>
+    <string name="exercice_03">Exercice 3 :</string>
+    <string name="exercice_06">Exercice 6 :</string>
+    <string name="exercice_07">Exercice 7 :</string>
+    <string name="exercice_08">Exercice 8 :</string>
+    <string name="n_serie">N° Serie :</string>
+    <string name="n_rep">N° Rep :</string>
+    <string name="bw">Weight ?</string>
+    <string name="weight">Weight :</string>
+    <string name="restt">Rest :</string>
+    <string name="start_workout">Start workout !</string>
+    <string name="done">Done</string>
+    <string name="test">TEST</string>
+    <string name="programme">Programme</string>
+    <string-array name="listofexos">
+        <item>Leg</item>
+        <item>Bulgarian Split</item>
+        <item>Lunge</item>
+        <item>Squat</item>
+        <item>Squat Hold</item>
+
+        <item>Chest</item>
+        <item>Narrow Push Up</item>
+        <item>Pike Push Up</item>
+
+    </string-array>
+
+</resources>
