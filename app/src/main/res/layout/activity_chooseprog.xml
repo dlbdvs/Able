@@ -2,11 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pull Ups - Day 1"
+        android:onClick="onClick"
+        android:id="@+id/workout1"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pull Ups - Day 2"
+        android:onClick="onClick"
+        android:id="@+id/workout2"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pull Ups - Day 3"
         android:onClick="onClick"
-        android:id="@+id/workout1"/>
+        android:id="@+id/workout3"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pull Ups - Day 4"
+        android:onClick="onClick"
+        android:id="@+id/workout4"/>
+
+
 
 </LinearLayout>

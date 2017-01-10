@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,22 +10,37 @@
         android:text="@string/jpec"
         android:textSize="20sp"
         android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="240sp"
+        android:layout_marginTop="20sp"
+        android:layout_height="318sp"
+        android:layout_gravity="center"
+        android:src="@drawable/mini_goku"
+        android:contentDescription="@string/mini_goku" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_one"
             android:onClick="onClick"
-            android:id="@+id/create_prog"/>
+            android:id="@+id/create_prog"
+            android:layout_marginRight="30sp"
+            android:layout_marginEnd="30sp"
+            tools:ignore="ButtonStyle" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/choose_one"
             android:onClick="onClick"
-            android:id="@+id/choose_prog"/>
+            android:id="@+id/choose_prog"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 

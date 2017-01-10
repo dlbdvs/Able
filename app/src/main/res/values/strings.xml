@@ -29,6 +29,7 @@
     <string name="choose_one">Choose one !</string>
     <string name="create_one">Create one !</string>
     <string name="jpec">Jpec</string>
+    <string name="mini_goku">mini_goku</string>
     <string-array name="listofexos">
         <item>Leg</item>
         <item>Bulgarian Split</item>
