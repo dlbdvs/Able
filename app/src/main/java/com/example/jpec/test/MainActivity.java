@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 
     private Button create_prog;
     private Button choose_prog;
+    Login_DbHelper myDB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,19 @@ public class MainActivity extends Activity {
         choose_prog=(Button)findViewById(R.id.choose_prog);
         create_prog.setOnClickListener(onClick);
         choose_prog.setOnClickListener(onClick);
+
+        //ADDIND LOGIN TEST
+
+
+
+
+
+
+
+
+
+        //END OF ADDING
+
     }
     private View.OnClickListener onClick = new View.OnClickListener() {
         @Override

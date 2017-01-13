@@ -32,7 +32,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Test"
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.PROGRAMMEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ViewListContents"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.COUNTDOWNACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TestMainActivity"
             android:label="TEST">
             <intent-filter>
                 <action android:name="com.example.jpec.test.CreateProgrammActivity" />
@@ -88,6 +107,29 @@
             </intent-filter>
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity
+            android:name=".TeSt"
+            android:label="MainActivity">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.PROGRAMMACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Register"
+            android:label="MainActivity">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.PROGRAMMACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

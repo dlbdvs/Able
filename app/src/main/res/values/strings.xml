@@ -40,7 +40,22 @@
         <item>Chest</item>
         <item>Narrow Push Up</item>
         <item>Pike Push Up</item>
+        <!-- FIN AJOUTEE-->
 
     </string-array>
+        <array name="liste_couleurs_fr">
+            <item>Bleu</item>
+            <item>Rouge</item>
+            <item>Vert</item>
+        </array>
+        <array name="liste_couleurs">
+            <item>blue</item>
+            <item>red</item>
+            <item>green</item>
+        </array>
+
+
+
 
 </resources>
+
