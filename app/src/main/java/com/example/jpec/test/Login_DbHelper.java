@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by jpec on 12/01/17.
@@ -53,7 +57,17 @@ public class Login_DbHelper extends SQLiteOpenHelper {
 
     public Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT * FROM "+TABLE_NAME, null );
+        Cursor data = db.rawQuery("SELECT USERNAME, PASSWORD FROM "+TABLE_NAME, null );
         return data;
+    }
+
+
+    public Cursor getPseudo(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor d=db.rawQuery("SELECT USERNAME FROM "+TABLE_NAME, null );
+        return d;
+
+
+
     }
 }
