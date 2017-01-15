@@ -89,10 +89,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w1"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:inputType="number"
                 android:id="@+id/poids1"/>
             <TextView
@@ -104,6 +106,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest1bis"/>
 
         </LinearLayout>
 
@@ -179,11 +190,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w2"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:visibility="gone"
                 android:id="@+id/poids2"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -194,6 +207,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest2bis"/>
 
         </LinearLayout>
 
@@ -265,11 +287,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w3"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:visibility="gone"
                 android:id="@+id/poids3"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -280,6 +304,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest3"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest3bis"/>
 
         </LinearLayout>
 
@@ -350,11 +383,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w4"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:visibility="gone"
                 android:id="@+id/poids4"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -365,6 +400,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest4"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest4bis"/>
 
         </LinearLayout>
 
@@ -435,11 +479,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w5"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:visibility="gone"
                 android:id="@+id/poids5"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -450,6 +496,16 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest5bis"/>
 
         </LinearLayout>
 
@@ -517,12 +573,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:id="@+id/w6"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:visibility="gone"
                 android:id="@+id/poids6"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -533,6 +591,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest6"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest6bis"/>
 
         </LinearLayout>
 
@@ -602,10 +669,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/w7"
+                android:visibility="gone"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:inputType="number"
                 android:id="@+id/poids7"/>
             <TextView
@@ -617,6 +686,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest7"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restbis" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/rest7bis"/>
 
         </LinearLayout>
 
@@ -685,11 +763,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:id="@+id/w8"
                 android:text="@string/weight"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:inputType="number"
                 android:id="@+id/poids8"/>
             <TextView
@@ -701,6 +781,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/rest8"/>
+
 
         </LinearLayout>
 
@@ -721,6 +802,11 @@
         android:text="@string/start_workout"
         android:id="@+id/START"
         android:onClick="onClick"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveworkout"
+        android:text="@string/save_for_later"/>
 
 
 </LinearLayout>

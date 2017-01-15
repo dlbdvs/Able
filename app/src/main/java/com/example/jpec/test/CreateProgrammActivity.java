@@ -2,7 +2,9 @@ package com.example.jpec.test;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +31,7 @@ public class CreateProgrammActivity extends Activity{
     public boolean isCreated= true;
     private Button add;
     private Button START;
+    private Button saveworkout;
     private CheckBox rd1;
     private CheckBox rd2;
     private CheckBox rd3;
@@ -296,6 +299,9 @@ Pour utiliser "Parcelable", il faut :
             }
         });
 
+        saveworkout=(Button)findViewById(R.id.saveworkout);
+        saveworkout.setOnClickListener(onClick);
+
         LL1=(LinearLayout)findViewById(R.id.LL1);
         LL2=(LinearLayout)findViewById(R.id.LL2);
         LL3=(LinearLayout)findViewById(R.id.LL3);
@@ -419,7 +425,7 @@ Pour utiliser "Parcelable", il faut :
                     }
                     exoo1= getExercise(spinner1);
                     try{
-                    exoo1=setExercise(exoo1, R.id.nbs1, R.id.nbr1, rd1, R.id.poids1, R.id.rest1);}catch(IncompleteException e){}
+                    exoo1=setExercise(exoo1, R.id.nbs1, R.id.nbr1, rd1, R.id.poids1, R.id.rest1);}catch(Exception e){}
                     if (getExercise(spinner2) == new Exercise()){
                         exoo2=null;
                     }
@@ -526,41 +532,19 @@ Pour utiliser "Parcelable", il faut :
 
                     i.putExtra("compteur_exo", compteur_exo);
                     i.putExtra("compteur_serie", compteur_serie);
-                    /*
-                    exoo2=getExercise(spinner2);
-                    exoo3=getExercise(spinner3);
-                    exoo4=getExercise(spinner4);
-                    exoo5=getExercise(spinner5);
-                    exoo6=getExercise(spinner6);
-                    exoo7=getExercise(spinner7);
-                    exoo8=getExercise(spinner8);
-                    */
-
-
-                    // CONVERSION ADEQUATE DE L EDIT TEXT
-                    /*
-                    En effet, il faut appeler la méthode Integer.parseInt pour récupérer un int à partir d'un String
-                    Or, pour récupérer un String d'un EditText, il faut : convertir le View en EditText, récupérer le texte et le mettre en String
-
-                    nbs1 = Integer.parseInt(((EditText)findViewById(R.id.nbs1)).getText().toString());
-                    nbr1 = Integer.parseInt(((EditText)findViewById(R.id.nbr1)).getText().toString());
-                    rd1=Boolean.parseBoolean(((RadioButton)findViewById(R.id.rd1)).getText().toString());
-                    poids1 = Integer.parseInt(((EditText)findViewById(R.id.poids1)).getText().toString());;
-                    rest1= Double.parseDouble(((EditText)findViewById(R.id.rest1)).getText().toString());
-                    */
-
-                    /*
-                    exoo2=setExercise(exoo2, R.id.nbs2, R.id.nbr2, R.id.rd2, R.id.poids2, R.id.rest2);
-                    exoo3=setExercise(exoo3, R.id.nbs3, R.id.nbr3, R.id.rd3, R.id.poids3, R.id.rest3);
-                    exoo4=setExercise(exoo4, R.id.nbs4, R.id.nbr4, R.id.rd4, R.id.poids4, R.id.rest4);
-                    exoo5=setExercise(exoo5, R.id.nbs5, R.id.nbr5, R.id.rd5, R.id.poids5, R.id.rest5);
-                    exoo6=setExercise(exoo6, R.id.nbs6, R.id.nbr6, R.id.rd6, R.id.poids6, R.id.rest6);
-                    exoo7=setExercise(exoo7, R.id.nbs7, R.id.nbr7, R.id.rd7, R.id.poids7, R.id.rest7);
-                    exoo8=setExercise(exoo8, R.id.nbs8, R.id.nbr8, R.id.rd8, R.id.poids8, R.id.rest8);
-                    */
-
                     startActivity(i);
 
+                    break;
+                case R.id.saveworkout:
+                    SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    name_workout=(TextView)findViewById(R.id.programme_name);
+                    if (name_workout.getText().toString().equals("")){
+                        name_workout.setText("Created Programme");
+
+                    }
+                    editor.putString("nameworkout1", name_workout.getText().toString());
+                    editor.apply();
                     break;
             }
         }
@@ -569,13 +553,11 @@ Pour utiliser "Parcelable", il faut :
     };
 
 
-    public Exercise setExercise(Exercise e, int v, int w, CheckBox r, int y, int z) throws IncompleteException{ //throws IncompleteException
-        //if ((int)findViewbyId(R.id.nbs1) == ""){ throw new IncompleteException}else{...Suite du prog}
-        //try{}catch (Exception e){throw new IncompleteException}
+    public Exercise setExercise(Exercise e, int v, int w, CheckBox r, int y, int z) {
         try{
         e.nbseries=Integer.parseInt(((EditText)findViewById(v)).getText().toString());
         e.nbreps=Integer.parseInt(((EditText)findViewById(w)).getText().toString());}catch (Exception excep){
-            throw new IncompleteException();
+           //Toast.makeText(this, "Default repetitions/series applied on exercise(s) ! ", Toast.LENGTH_LONG).show();
         }
         if (r.isChecked()){
             e.isPdc=false;
@@ -585,6 +567,7 @@ Pour utiliser "Parcelable", il faut :
             e.setPdc(true);
             e.setPoids(0);
         }
+
         e.repos=(int)Double.parseDouble(((EditText)findViewById(z)).getText().toString());
         return e;
     }

@@ -1,7 +1,9 @@
 package com.example.jpec.test;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,10 @@ import android.widget.Button;
 
 public class ChooseProg extends Activity {
     private Button w1;
+    private Button w2;
+    private Button w3;
+    private Button w4;
+    private Button w5;
     int compteur_exo=1;
     int compteur_serie=1;
     public boolean isCreated= true;
@@ -31,6 +37,23 @@ public class ChooseProg extends Activity {
         setContentView(R.layout.activity_chooseprog);
         w1=(Button)findViewById(R.id.workout1);
         w1.setOnClickListener(onClick);
+        w2=(Button)findViewById(R.id.workout2);
+        w2.setOnClickListener(onClick);
+        w3=(Button)findViewById(R.id.workout3);
+        w3.setOnClickListener(onClick);
+        w4=(Button)findViewById(R.id.workout4);
+        w4.setOnClickListener(onClick);
+
+
+
+        SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        String nameworkout1 = sharedPreferences.getString("nameworkout1","");
+
+
+
+        w5=(Button)findViewById(R.id.workout5);
+        w5.setText(nameworkout1);
+        w5.setOnClickListener(onClick);
     }
     private View.OnClickListener onClick = new View.OnClickListener() {
         @Override
@@ -110,6 +133,9 @@ public class ChooseProg extends Activity {
                     i4.putExtra("compteur_serie", compteur_serie);
                     i4.putExtra("isCreated", isCreated);
                     startActivity(i4);
+                    break;
+                case R.id.workout5:
+
                     break;
 
 

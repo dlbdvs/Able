@@ -30,6 +30,20 @@
     <string name="create_one">Create one !</string>
     <string name="jpec">Jpec</string>
     <string name="mini_goku">mini_goku</string>
+    <string name="confirm_password">Confirm password :</string>
+    <string name="password">Password :</string>
+    <string name="register">Register</string>
+    <string name="username">Username :</string>
+    <string name="gokuaccueil">GokuAccueil</string>
+    <string name="log_in">Log in</string>
+    <string name="imglvl">imglvl</string>
+    <string name="pull_ups_day_1">Pull Ups - Day 1</string>
+    <string name="pull_ups_day_3">Pull Ups - Day 3</string>
+    <string name="pull_ups_day_2">Pull Ups - Day 2</string>
+    <string name="pull_ups_day_4">Pull Ups - Day 4</string>
+    <string name="created_workouts">Created workouts</string>
+    <string name="save_for_later">Save for later</string>
+    <string name="restbis">Rest before next exercise :</string>
     <string-array name="listofexos">
         <item>Leg</item>
         <item>Bulgarian Split</item>

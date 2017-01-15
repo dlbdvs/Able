@@ -243,6 +243,7 @@ public class ProgrammActivity extends Activity implements Serializable{
             compteur_serie=1;
             compteur_exo+=1;
             next=true;
+            current_rest=90;
         }else{
             next=false;
         }
