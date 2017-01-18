@@ -2,8 +2,10 @@ package com.example.jpec.test;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
@@ -36,6 +38,13 @@ public class ProgrammActivity extends Activity implements Serializable{
     private LinearLayout L6;
     private LinearLayout L7;
     private LinearLayout L8;
+    private TextView restbis1;
+    private TextView restbis2;
+    private TextView restbis3;
+    private TextView restbis4;
+    private TextView restbis5;
+    private TextView restbis6;
+    private TextView restbis7;
 
     private TextView currentexo;
     private TextView currentserie;
@@ -162,6 +171,18 @@ public class ProgrammActivity extends Activity implements Serializable{
 
 
             }
+        //TODO METTRE ICI LES NOUVELLES VUES
+
+        restbis1=(TextView)findViewById(R.id.btwexo1);
+        restbis2=(TextView)findViewById(R.id.btwexo2);
+        restbis3=(TextView)findViewById(R.id.btwexo3);
+        restbis4=(TextView)findViewById(R.id.btwexo4);
+        restbis5=(TextView)findViewById(R.id.btwexo5);
+        restbis6=(TextView)findViewById(R.id.btwexo6);
+        restbis7=(TextView)findViewById(R.id.btwexo7);
+
+        setViewSpecialRest();
+
 
 
 
@@ -258,6 +279,100 @@ public class ProgrammActivity extends Activity implements Serializable{
             next=false;
         }
 
+
+    }
+
+    public void setViewSpecialRest(){
+        Resources res =getResources();
+        try {
+            if (rest[0] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[0] );
+                restbis1.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test=String.format(res.getString(R.string.resttest),(int) exoo1.getRepos() );
+                restbis1.setText(test);
+
+            }
+        }catch (Exception e){
+        }
+        try{
+
+            if (rest[1] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[1] );
+                restbis2.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test=String.format(res.getString(R.string.resttest),(int) exoo2.getRepos() );
+                restbis2.setText(test);
+            }
+        }catch (Exception e){
+
+        }
+        try{
+
+            if (rest[2] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[2] );
+                restbis3.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test = String.format(res.getString(R.string.resttest), (int) exoo3.getRepos());
+                restbis3.setText(test);
+            }
+        }catch (Exception e){
+
+        }
+
+        try{
+
+            if (rest[3] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[3] );
+                restbis4.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test=String.format(res.getString(R.string.resttest),(int) exoo4.getRepos() );
+                restbis4.setText(test);
+            }
+        }catch (Exception e){
+
+        }
+        try{
+
+            if (rest[4] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[4] );
+                restbis5.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test=String.format(res.getString(R.string.resttest),(int) exoo5.getRepos() );
+                restbis5.setText(test);
+            }
+        }catch (Exception e){
+
+        }
+        try{
+            if (rest[5] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[5] );
+                restbis6.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test = String.format(res.getString(R.string.resttest), (int) exoo6.getRepos());
+                restbis6.setText(test);
+            }
+        }catch (Exception e){
+
+        }
+        try{
+            if (rest[6] != 0) {
+                String test=String.format(res.getString(R.string.resttest),rest[6] );
+                restbis7.setText(test);
+            } else {
+                //restbis1.setText(Integer.toString((int) exoo1.getRepos()));
+                String test=String.format(res.getString(R.string.resttest),(int) exoo7.getRepos() );
+                restbis7.setText(test);
+            }
+        }catch (Exception e){
+
+        }
 
     }
     protected void whichExercise(){
