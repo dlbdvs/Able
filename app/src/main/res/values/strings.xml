@@ -44,6 +44,8 @@
     <string name="created_workouts">Created workouts</string>
     <string name="save_for_later">Save for later</string>
     <string name="restbis">Rest before next exercise :</string>
+    <string name="resttest">Time to the next exercise : %1</string>
+
     <string-array name="listofexos">
         <item>Leg</item>
         <item>Bulgarian Split</item>

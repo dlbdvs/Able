@@ -219,6 +219,7 @@
 
         </LinearLayout>
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -316,6 +317,7 @@
 
         </LinearLayout>
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -411,6 +413,7 @@
                 android:id="@+id/rest4bis"/>
 
         </LinearLayout>
+
 
     </LinearLayout>
 
@@ -508,6 +511,7 @@
                 android:id="@+id/rest5bis"/>
 
         </LinearLayout>
+
 
     </LinearLayout>
     <LinearLayout
@@ -784,6 +788,7 @@
 
 
         </LinearLayout>
+
 
     </LinearLayout>
 

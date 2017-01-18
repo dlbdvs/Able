@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ public class CreateProgrammActivity extends Activity{
 
     private TextView name_workout;
 
+    int[] rest = new int[6];
     int nbexo=1;
     int compteur_exo=1;
     int compteur_serie=1;
@@ -56,6 +58,13 @@ public class CreateProgrammActivity extends Activity{
     private EditText poids6;
     private EditText poids7;
     private EditText poids8;
+    private EditText restbis1;
+    private EditText restbis2;
+    private EditText restbis3;
+    private EditText restbis4;
+    private EditText restbis5;
+    private EditText restbis6;
+    private EditText restbis7;
     private TextView w1;
     private TextView w2;
     private TextView w3;
@@ -107,6 +116,25 @@ Pour utiliser "Parcelable", il faut :
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addworkout);
+
+        restbis1=(EditText)findViewById(R.id.rest1bis);
+        restbis2=(EditText)findViewById(R.id.rest2bis);
+        restbis3=(EditText)findViewById(R.id.rest3bis);
+        restbis4=(EditText)findViewById(R.id.rest4bis);
+        restbis5=(EditText)findViewById(R.id.rest5bis);
+        restbis6=(EditText)findViewById(R.id.rest6bis);
+        restbis7=(EditText)findViewById(R.id.rest7bis);
+        //TODO REVOIR OCR
+        /*
+        Resources res = getResources();
+// Anaïs ira en %1 et 22 ira en %2
+        String chaine = res.getString(R.string.resttest, (int)exoo1.getRepos());
+
+        restbis1.setText(chaine);
+        restbis2.setText(Integer.toString((int)exoo1.getRepos()));
+        */
+
+
 
 
         //Initialisation des boutons
@@ -516,9 +544,10 @@ Pour utiliser "Parcelable", il faut :
                         }
 
                     }
+                    specialrest();
 
-                    //exoo2=getExercise(spinner2);
-                    //exoo2=setExercise(exoo2, R.id.nbs2, R.id.nbr2, rd2, R.id.poids2, R.id.rest2);
+
+                    i.putExtra("restspecial", rest);
                     i.putExtra("exoo1", exoo1);
                     i.putExtra("exoo2", exoo2);
                     i.putExtra("exoo3", exoo3);
@@ -554,11 +583,13 @@ Pour utiliser "Parcelable", il faut :
 
 
     public Exercise setExercise(Exercise e, int v, int w, CheckBox r, int y, int z) {
-        try{
+         try{
         e.nbseries=Integer.parseInt(((EditText)findViewById(v)).getText().toString());
         e.nbreps=Integer.parseInt(((EditText)findViewById(w)).getText().toString());}catch (Exception excep){
            //Toast.makeText(this, "Default repetitions/series applied on exercise(s) ! ", Toast.LENGTH_LONG).show();
         }
+        //TODO Gérer d'une autre manière cette exception afin d'empêcher à l'utilisateur d'aller sur la prochaine page
+        //Faire un test sur getExercise pour ne pas tomber dans le panneau pour les autres exo non remplis
         if (r.isChecked()){
             e.isPdc=false;
             e.setPoids(Integer.parseInt(((EditText)findViewById(y)).getText().toString()));
@@ -569,6 +600,9 @@ Pour utiliser "Parcelable", il faut :
         }
 
         e.repos=(int)Double.parseDouble(((EditText)findViewById(z)).getText().toString());
+
+
+
         return e;
     }
 
@@ -590,6 +624,17 @@ Pour utiliser "Parcelable", il faut :
         }else {
             return new Exercise();  //PAR DEFAUT
         }
+    }
+    public void specialrest(){
+        //TODO btwexo à ajuster pour textview
+        try{rest[0]=Integer.parseInt(((EditText)findViewById(R.id.rest1bis)).getText().toString());}catch (Exception e1){};
+        try{rest[1]=Integer.parseInt(((EditText)findViewById(R.id.rest2bis)).getText().toString());}catch (Exception e2){};
+        try{rest[2]=Integer.parseInt(((EditText)findViewById(R.id.rest3bis)).getText().toString());}catch (Exception e3){};
+        try{rest[3]=Integer.parseInt(((EditText)findViewById(R.id.rest4bis)).getText().toString());}catch (Exception e4){};
+        try{rest[4]=Integer.parseInt(((EditText)findViewById(R.id.rest5bis)).getText().toString());}catch (Exception e5){};
+        try{rest[5]=Integer.parseInt(((EditText)findViewById(R.id.rest6bis)).getText().toString());}catch (Exception e6){};
+        try{rest[6]=Integer.parseInt(((EditText)findViewById(R.id.rest7bis)).getText().toString());}catch (Exception e7){};
+
     }
 
     public void whichLayout(){

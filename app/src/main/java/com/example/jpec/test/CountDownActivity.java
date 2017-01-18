@@ -32,6 +32,7 @@ public class CountDownActivity extends Activity {
     Exercise currentExo;
     public boolean isCreated;
     public boolean next;
+    int[] rest =new int[6];
 
 
 
@@ -97,6 +98,8 @@ public class CountDownActivity extends Activity {
                     intent.putExtra("isCreated", isCreated);
                     intent.putExtra("name_workout", name_workout);
                     intent.putExtra("started", started);
+                    intent.putExtra("restspecial", rest);
+
 
                     startActivity(intent);
                     break;
@@ -121,6 +124,9 @@ public class CountDownActivity extends Activity {
             isCreated=(boolean)b.get("isCreated");
             currentExo=intent.getParcelableExtra("currentExo");
             next=(boolean)b.get("next");
+            if (b.get("restspecial") !=null){
+                rest = (int[])b.get("restspecial");
+            }
 
             if (isCreated) {
                 name_workout = (String) b.get("name_workout");

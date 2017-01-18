@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -55,7 +56,7 @@ public class ProgrammActivity extends Activity implements Serializable{
     private Button start_workout;
     private Button done;
 
-
+    int[] rest= new int[6];
     int compteur_exo=1;
     int compteur_serie=1;
     int current_rest;
@@ -74,14 +75,17 @@ public class ProgrammActivity extends Activity implements Serializable{
                     whichExercise();
                     currentexo=(TextView)findViewById(R.id.current_exo);
                     currentserie=(TextView)findViewById(R.id.current_repserie);
-                    if (currentExo != null) { //Test inutile
+                    if (currentExo != null) {
                         currentexo.setText(currentExo.getNom());
-                        //currentserie.setText("Serie n° : "+compteur_serie+" / "+currentExo.getNbseries()+"\nReps : "+currentExo.getNbreps());
-                        currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + (int) currentExo.getRepos());
+                        if (compteur_serie+1 > currentExo.getNbseries()){
+                            if (rest[compteur_exo-1] != 0) {
+                                current_rest = rest[compteur_exo - 1];
+                            }
+                        }
+                        currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + current_rest);
 
                     }
                     compteur_serie++;
-                        //nextExercice();
 
                     done=(Button)findViewById(R.id.done);
                     done.setOnClickListener(onClick);}catch (Exception e){
@@ -107,6 +111,7 @@ public class ProgrammActivity extends Activity implements Serializable{
                     intent.putExtra("exoo7", exoo7);
                     intent.putExtra("exoo8", exoo8);
                     intent.putExtra("name_workout", name_workout);
+                    intent.putExtra("restspecial", rest);
                     startActivity(intent);
                     break;
             }
@@ -125,6 +130,9 @@ public class ProgrammActivity extends Activity implements Serializable{
 
             compteur_exo = (int) b.get("compteur_exo");
             compteur_serie = (int) b.get("compteur_serie");
+            if (b.get("restspecial") !=null){
+                rest = (int[])b.get("restspecial");
+            }
             if(b.get("isCreated") != null){
                 isCreated=(boolean) b.get("isCreated");
             }
@@ -243,7 +251,9 @@ public class ProgrammActivity extends Activity implements Serializable{
             compteur_serie=1;
             compteur_exo+=1;
             next=true;
-            current_rest=90;
+            if (rest[compteur_exo-2] != 0) {
+                current_rest = rest[compteur_exo - 2];
+            }
         }else{
             next=false;
         }

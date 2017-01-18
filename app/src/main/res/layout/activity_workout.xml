@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:stretchColumns="1">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="UselessParent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,150 +23,251 @@
         android:textSize="30sp"
         android:id="@+id/name_workout"
         android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/L1"
+        android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L1"
     android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 1 :"
+        android:text="@string/exercice_01"
         android:textSize="20sp"
         android:layout_marginTop="40sp"
         android:layout_marginBottom="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo1"
         android:layout_marginTop="40sp"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
+
 </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/btwexo1"
+        android:layout_marginBottom="20sp"
+        android:text="@string/test"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/L2"
+            android:orientation="vertical">
+
+
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L2"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 2 :"
+        android:text="@string/exercice_02"
         android:layout_marginBottom="20sp"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo2"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo2"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/L3"
+            android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L3"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 3 :"
+        android:text="@string/exercice_03"
         android:textSize="20sp"
         android:layout_marginBottom="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo3"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo3"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/L4"
+            android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L4"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 4 :"
+        android:text="@string/exercice_04"
         android:layout_marginBottom="20sp"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo4"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo4"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/L5"
+            android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L5"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 5 :"
+        android:text="@string/exercice_05"
         android:layout_marginBottom="20sp"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo5"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo5"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/L6"
+                android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L6"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
-        android:text="Exercice 6 :"
+        android:text="@string/exercice_06"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo6"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo6"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/L7"
+            android:orientation="vertical">
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/L7"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 7 :"
+        android:text="@string/exercice_07"
         android:layout_marginBottom="20sp"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:id="@+id/exo7"
         android:textSize="20sp"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/btwexo7"
+                android:layout_marginBottom="20sp"
+                android:text="@string/test"/>
+            </LinearLayout>
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -173,16 +276,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercice 8 :"
+        android:text="@string/exercice_08"
         android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="@string/test"
         android:textSize="20sp"
         android:id="@+id/exo8"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"/>
+        android:layout_marginLeft="20sp"
+        tools:ignore="RtlHardcoded" />
 
 </LinearLayout>
 
@@ -190,7 +294,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Start"
+        android:text="@string/start"
         android:id="@+id/start_workout"
         android:background="@android:color/holo_red_dark"
         android:textColor="@android:color/background_light" />
