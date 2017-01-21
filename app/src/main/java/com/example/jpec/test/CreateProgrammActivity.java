@@ -2,7 +2,9 @@ package com.example.jpec.test;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -25,7 +27,9 @@ import android.widget.Toast;
 public class CreateProgrammActivity extends Activity{
 
     private TextView name_workout;
-    public int perso=0;
+    public int perso=0; //TODO Voir si cela ne serait pas mieux d'utiliser une bdd SQL
+    Workout_DbHelper myDB;
+
 
     int[] rest = new int[6];
     int nbexo=1;
@@ -648,14 +652,25 @@ Pour utiliser "Parcelable", il faut :
                         }
 
                     }
-                    specialrest();
-
-                    //TODO Rendre possible cela sur trois boutons
                     name_workout=(TextView)findViewById(R.id.programme_name);
                     if (name_workout.getText().toString().equals("")){
                         name_workout.setText("Created Programm");
 
                     }
+                    //TODO Mettre ici accès bdd aussi
+                    myDB = new Workout_DbHelper(v.getContext());
+                    SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    String user=sharedPreferences.getString("username","");
+                    boolean bdd=myDB.addData(user, exoo1.getNom(),name_workout.getText().toString(), exoo1.getNbreps(), exoo1.getNbseries(), exoo1.getPoids(), (int)exoo1.getRepos(), "notdefined", 0 );
+                    if (bdd){
+                        Toast.makeText(v.getContext(), "Yeah !", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(v.getContext(), "Nooooo....", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                            //FIN AJOUT
+
                     whichPreferences();
 
                     Intent w = new Intent(v.getContext(), ChooseProg.class);
@@ -668,11 +683,60 @@ Pour utiliser "Parcelable", il faut :
     };
     public void saveWorkout(){
         SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
-        if (sharedPreferences.contains("nameWorkout1")){
-            sharedPreferences=getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
-            if (sharedPreferences.contains("nameWorkout1")){
-                sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+        if (perso ==0) {
+
+            if (sharedPreferences.contains("nameWorkout1")) {
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.confirm_reini_workout1);
+                builder.setMessage(R.string.confirm_reini_workout1m);
+                builder.setNegativeButton(R.string.no, null);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        perso = 1;
+                        saveWorkout();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();*/
+
+                sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+                if (sharedPreferences.contains("nameWorkout1")) {
+                    /*AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                    builder2.setTitle(R.string.confirm_reini_workout1);
+                    builder2.setMessage(R.string.confirm_reini_workout1m);
+                    builder2.setNegativeButton(R.string.no, null);
+                    builder2.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            perso = 2;
+                            saveWorkout();
+                        }
+                    });
+                    AlertDialog dialog2 = builder2.create();
+                    dialog2.show();*/
+                    sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+                    //if (sharedPreferences.contains("nameWorkout1")) {
+                        /*AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                        builder3.setTitle(R.string.confirm_reini_workout1);
+                        builder3.setMessage(R.string.confirm_reini_workout1m);
+                        builder3.setNegativeButton(R.string.no, null);
+                        builder3.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                perso = 3;
+                                saveWorkout();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();*/
+                    //}
+                }
             }
+        }else if (perso==2){
+            sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+        }else {
+            sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
         }
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if ((getExercise(spinner1) != new Exercise())&&(getExercise(spinner1) != null)){ // &&null
@@ -765,8 +829,9 @@ Pour utiliser "Parcelable", il faut :
             Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
 
         }
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         saveWorkout();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        specialrest();
         editor.putString("nameWorkout1", name_workout.getText().toString());
         editor.putInt("specialRest1", rest[0]);
         editor.putInt("specialRest2", rest[1]);

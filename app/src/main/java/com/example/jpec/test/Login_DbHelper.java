@@ -17,13 +17,13 @@ import java.util.ArrayList;
 public class Login_DbHelper extends SQLiteOpenHelper {
 
 
-    public static final String DATABASE_NAME="mydb.db";
-    public static final String TABLE_NAME="members";
+    private static final String DATABASE_NAME="mydb.db";
+    private static final String TABLE_NAME="members";
     public static final String COL1="ID";
-    public static final String COL2="USERNAME";
-    public static final String COL3="PASSWORD";
+    private static final String COL2="USERNAME";
+    private static final String COL3="PASSWORD";
 
-    public Login_DbHelper (Context context){
+    Login_DbHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -39,7 +39,7 @@ public class Login_DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addData(String item1, String item2){
+    boolean addData(String item1, String item2){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item1);
@@ -55,14 +55,13 @@ public class Login_DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getListContents(){
+    Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT USERNAME, PASSWORD FROM "+TABLE_NAME, null );
-        return data;
+        return db.rawQuery("SELECT USERNAME, PASSWORD FROM "+TABLE_NAME, null );
     }
 
 
-    public Cursor getPseudo(){
+    Cursor getPseudo(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor d=db.rawQuery("SELECT USERNAME FROM "+TABLE_NAME, null );
         return d;

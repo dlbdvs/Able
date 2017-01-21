@@ -171,7 +171,6 @@ public class ProgrammActivity extends Activity implements Serializable{
 
 
             }
-        //TODO METTRE ICI LES NOUVELLES VUES
 
         restbis1=(TextView)findViewById(R.id.btwexo1);
         restbis2=(TextView)findViewById(R.id.btwexo2);

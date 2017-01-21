@@ -282,7 +282,7 @@ public class ChooseProg extends Activity {
         int r6=sharedPreferences.getInt("specialRest6", 0);
 
 
-        int [] rest={r1, r2, r3, r4,r5,r6};
+        rest= new int[]{r1, r2, r3, r4, r5, r6};
 
 
 
