@@ -342,7 +342,7 @@ Pour utiliser "Parcelable", il faut :
     private View.OnClickListener onClick = new View.OnClickListener(){
         @Override
         //Le view définit quel bouton a été cliqué
-        public void onClick(View v){
+        public void onClick(final View v){
             switch(v.getId()) {
                 case R.id.rd8:
                     if (rd8.isChecked()){
@@ -658,29 +658,65 @@ Pour utiliser "Parcelable", il faut :
 
                     }
                     //TODO Mettre ici accès bdd aussi
-                    myDB = new Workout_DbHelper(v.getContext());
+                    //myDB = new Workout_DbHelper(v.getContext());
                     SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                     String user=sharedPreferences.getString("username","");
-                    boolean bdd=myDB.addData(user, exoo1.getNom(),name_workout.getText().toString(), exoo1.getNbreps(), exoo1.getNbseries(), exoo1.getPoids(), (int)exoo1.getRepos(), "notdefined", 0 );
+                    /*boolean bdd=myDB.addData(user, exoo1.getNom(),name_workout.getText().toString(), exoo1.getNbreps(), exoo1.getNbseries(), exoo1.getPoids(), (int)exoo1.getRepos(), "notdefined", 0 );
                     if (bdd){
                         Toast.makeText(v.getContext(), "Yeah !", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(v.getContext(), "Nooooo....", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
 
 
-                            //FIN AJOUT
-
-                    whichPreferences();
-
-                    Intent w = new Intent(v.getContext(), ChooseProg.class);
-                    startActivity(w);
+                    //FIN AJOUT
+//TODO Enlever ça si bug ATTENTION V DEVENU FINAL
+                    AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
+                    //View view=getLayoutInflater().inflate(R.layout.dialog_overrideworkout,null);
+                    builder.setTitle(R.string.confirm_reini_workout1m);
+                            builder.setItems(R.array.initworkout, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // The 'which' argument contains the index position
+                                    // of the selected item
+                                    switch (which){
+                                        case 0:
+                                            perso=1;
+                                            whichPreferences();
+                                            Intent w = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w);
+                                            break;
+                                        case 1 :
+                                            perso=2;
+                                            whichPreferences();
+                                            Intent w1 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w1);
+                                            break;
+                                        case 2 :
+                                            perso=3;
+                                            whichPreferences();
+                                            Intent w2 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w2);
+                                            break;
+                                        case 3 :
+                                            break;
+                                    }
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+//TODO DECOMMENTER CA : Construire un dialog alert adapté pour demander quel truc supprimer, PUIS mettre le lien vers Choose
+                    //whichPreferences();
+                    //Intent w = new Intent(v.getContext(), ChooseProg.class);
+                    //startActivity(w);
                     break;
             }
         }
 
 
     };
+
+
+
     public void saveWorkout(){
         SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
         if (perso ==0) {
@@ -735,7 +771,7 @@ Pour utiliser "Parcelable", il faut :
             }
         }else if (perso==2){
             sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
-        }else {
+        }else if (perso==3){
             sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
         }
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -816,17 +852,31 @@ Pour utiliser "Parcelable", il faut :
 
     public void whichPreferences(){
         SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
-        if (sharedPreferences.contains("nameWorkout1")){
-            sharedPreferences=getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
-            if (sharedPreferences.contains("nameWorkout1")){
-                sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
-                Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
-
-            }else{
-                Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
-            }
-        }else {
+        if (perso==1){
             Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
+        }
+        if (perso==0) {
+            if (sharedPreferences.contains("nameWorkout1")) {
+                sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+                if (sharedPreferences.contains("nameWorkout1")) {
+                    sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+                    Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+        if (perso==2){
+            sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==3){
+            sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
 
         }
         saveWorkout();

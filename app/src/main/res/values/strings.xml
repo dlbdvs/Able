@@ -47,10 +47,18 @@
     <string name="current_lvl">Current lvl :</string>
     <string name="caracteristics">Caracteristics</string>
     <string name="confirm_reini_workout1">Override your first workout</string>
-    <string name="confirm_reini_workout1m">Would you like to override your first workout ?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="confirm_reini_workout1m">Which workout would you like to override ?</string>
+    <string name="first">The first one</string>
+    <string name="second">The second one</string>
+    <string name="third">The third one</string>
+    <string name="none">None of them</string>
 
+    <string-array name="initworkout">
+        <item>The first one</item>
+        <item>The second one</item>
+        <item>The third one</item>
+        <item>None of them</item>
+    </string-array>
 
     <string-array name="listofexos">
         <item>Leg</item>
