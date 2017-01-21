@@ -25,6 +25,7 @@ import android.widget.Toast;
 public class CreateProgrammActivity extends Activity{
 
     private TextView name_workout;
+    public int perso=0;
 
     int[] rest = new int[6];
     int nbexo=1;
@@ -124,17 +125,6 @@ Pour utiliser "Parcelable", il faut :
         restbis5=(EditText)findViewById(R.id.rest5bis);
         restbis6=(EditText)findViewById(R.id.rest6bis);
         restbis7=(EditText)findViewById(R.id.rest7bis);
-        //TODO REVOIR OCR
-        /*
-        Resources res = getResources();
-// Anaïs ira en %1 et 22 ira en %2
-        String chaine = res.getString(R.string.resttest, (int)exoo1.getRepos());
-
-        restbis1.setText(chaine);
-        restbis2.setText(Integer.toString((int)exoo1.getRepos()));
-        */
-
-
 
 
         //Initialisation des boutons
@@ -348,7 +338,7 @@ Pour utiliser "Parcelable", il faut :
     private View.OnClickListener onClick = new View.OnClickListener(){
         @Override
         //Le view définit quel bouton a été cliqué
-        public void onClick(View v){                            //throws IncompleteException
+        public void onClick(View v){
             switch(v.getId()) {
                 case R.id.rd8:
                     if (rd8.isChecked()){
@@ -565,21 +555,228 @@ Pour utiliser "Parcelable", il faut :
 
                     break;
                 case R.id.saveworkout:
-                    SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    name_workout=(TextView)findViewById(R.id.programme_name);
-                    if (name_workout.getText().toString().equals("")){
-                        name_workout.setText("Created Programme");
+                    exoo1= getExercise(spinner1);
+                    try{
+                        exoo1=setExercise(exoo1, R.id.nbs1, R.id.nbr1, rd1, R.id.poids1, R.id.rest1);}catch(Exception e){}
+                    if (getExercise(spinner2) == new Exercise()){
+                        exoo2=null;
+                    }
+                    else{
+                        try {
+                            exoo2=getExercise(spinner2);
+                            exoo2=setExercise(exoo2, R.id.nbs2, R.id.nbr2, rd2, R.id.poids2, R.id.rest2);
+                        }catch (Exception e){
+                            exoo2=null;
+                        }
 
                     }
-                    editor.putString("nameworkout1", name_workout.getText().toString());
-                    editor.apply();
+
+
+                    if (getExercise(spinner3) == new Exercise()){
+                        exoo3=null;
+                    }
+                    else{
+                        try {
+                            exoo3=getExercise(spinner3);
+                            exoo3=setExercise(exoo3, R.id.nbs3, R.id.nbr3, rd3, R.id.poids3, R.id.rest3);
+                        }catch (Exception e){
+                            exoo3=null;
+                        }
+
+                    }
+
+                    if (getExercise(spinner4) == new Exercise()){
+                        exoo4=null;
+                    }
+                    else{
+                        try {
+                            exoo4=getExercise(spinner4);
+                            exoo4=setExercise(exoo4, R.id.nbs4, R.id.nbr4, rd4, R.id.poids4, R.id.rest4);
+                        }catch (Exception e){
+                            exoo4=null;
+                        }
+
+                    }
+
+                    if (getExercise(spinner5) == new Exercise()){
+                        exoo5=null;
+                    }
+                    else{
+                        try {
+                            exoo5=getExercise(spinner2);
+                            exoo5=setExercise(exoo5, R.id.nbs5, R.id.nbr5, rd5, R.id.poids5, R.id.rest5);
+                        }catch (Exception e){
+                            exoo5=null;
+                        }
+
+                    }
+                    if (getExercise(spinner6) == new Exercise()){
+                        exoo6=null;
+                    }
+                    else{
+                        try {
+                            exoo6=getExercise(spinner2);
+                            exoo6=setExercise(exoo2, R.id.nbs6, R.id.nbr6, rd6, R.id.poids6, R.id.rest6);
+                        }catch (Exception e){
+                            exoo6=null;
+                        }
+
+                    }
+
+                    if (getExercise(spinner7) == new Exercise()){
+                        exoo7=null;
+                    }
+                    else{
+                        try {
+                            exoo7=getExercise(spinner7);
+                            exoo7=setExercise(exoo7, R.id.nbs7, R.id.nbr7, rd7, R.id.poids7, R.id.rest7);
+                        }catch (Exception e){
+                            exoo7=null;
+                        }
+
+                    }
+
+                    if (getExercise(spinner8) == new Exercise()){
+                        exoo8=null;
+                    }
+                    else{
+                        try {
+                            exoo8=getExercise(spinner8);
+                            exoo8=setExercise(exoo8, R.id.nbs8, R.id.nbr8, rd8, R.id.poids8, R.id.rest8);
+                        }catch (Exception e){
+                            exoo8=null;
+                        }
+
+                    }
+                    specialrest();
+
+                    //TODO Rendre possible cela sur trois boutons
+                    name_workout=(TextView)findViewById(R.id.programme_name);
+                    if (name_workout.getText().toString().equals("")){
+                        name_workout.setText("Created Programm");
+
+                    }
+                    whichPreferences();
+
+                    Intent w = new Intent(v.getContext(), ChooseProg.class);
+                    startActivity(w);
                     break;
             }
         }
 
 
     };
+    public void saveWorkout(){
+        SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
+        if (sharedPreferences.contains("nameWorkout1")){
+            sharedPreferences=getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+            if (sharedPreferences.contains("nameWorkout1")){
+                sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+            }
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if ((getExercise(spinner1) != new Exercise())&&(getExercise(spinner1) != null)){ // &&null
+            editor.putString("exo1",spinner1.getSelectedItem().toString() );
+            editor.putInt("reps1",exoo1.getNbreps());
+            editor.putInt("series1",exoo1.getNbseries());
+            editor.putInt("rest1",(int)exoo1.getRepos());
+            editor.putInt("weight1",exoo1.getPoids());
+
+        }
+        if ((getExercise(spinner2) != new Exercise())&&(getExercise(spinner2) != null)){
+            editor.putString("exo2",spinner2.getSelectedItem().toString() );
+            try {
+                editor.putInt("reps2", exoo2.getNbreps());
+                editor.putInt("series2", exoo2.getNbseries());
+                editor.putInt("rest2", (int) exoo2.getRepos());
+                editor.putInt("weight2", exoo2.getPoids());
+            }catch (Exception e){}
+
+        }
+        if ((getExercise(spinner3) != new Exercise())&&(getExercise(spinner3) != null)){
+            editor.putString("exo3",spinner3.getSelectedItem().toString() );
+            try {
+                editor.putInt("reps3", exoo3.getNbreps());
+                editor.putInt("series3", exoo3.getNbseries());
+                editor.putInt("rest3", (int) exoo3.getRepos());
+                editor.putInt("weight3", exoo3.getPoids());
+            }catch (Exception e2){}
+        }
+        if ((getExercise(spinner4) != new Exercise())&&(getExercise(spinner4) != null)){
+            editor.putString("exo4",spinner4.getSelectedItem().toString() );
+            try{
+            editor.putInt("reps4",exoo4.getNbreps());
+            editor.putInt("series4",exoo4.getNbseries());
+            editor.putInt("rest4",(int)exoo4.getRepos());
+            editor.putInt("weight4",exoo4.getPoids());
+            }catch (Exception e3){}
+        }
+        if ((getExercise(spinner5) != new Exercise())&&(getExercise(spinner5) != null)){
+            editor.putString("exo5",spinner5.getSelectedItem().toString() );
+            try{
+            editor.putInt("reps5",exoo5.getNbreps());
+            editor.putInt("series5",exoo5.getNbseries());
+            editor.putInt("rest5",(int)exoo5.getRepos());
+            editor.putInt("weight5",exoo5.getPoids());
+            }catch (Exception e4){}
+        }
+        if ((getExercise(spinner6) != new Exercise())&&(getExercise(spinner6) != null)){
+            editor.putString("exo6",spinner6.getSelectedItem().toString() );
+            try{
+            editor.putInt("reps6",exoo6.getNbreps());
+            editor.putInt("series6",exoo6.getNbseries());
+            editor.putInt("rest6",(int)exoo6.getRepos());
+            editor.putInt("weight6",exoo6.getPoids());
+            }catch (Exception e5){}
+        }
+        if ((getExercise(spinner7) != new Exercise())&&(getExercise(spinner7) != null)){
+            editor.putString("exo7",spinner7.getSelectedItem().toString() );
+            try {
+                editor.putInt("reps7", exoo7.getNbreps());
+                editor.putInt("series7", exoo7.getNbseries());
+                editor.putInt("rest7", (int) exoo7.getRepos());
+                editor.putInt("weight7", exoo7.getPoids());
+            }catch (Exception e6){}
+        }
+        if ((getExercise(spinner8) != new Exercise())&&(getExercise(spinner8) != null)){
+            editor.putString("exo8",spinner8.getSelectedItem().toString() );
+            try{
+            editor.putInt("reps8",exoo8.getNbreps());
+            editor.putInt("series8",exoo8.getNbseries());
+            editor.putInt("rest8",(int)exoo8.getRepos());
+            editor.putInt("weight8",exoo8.getPoids());
+            }catch (Exception e7){}
+        }
+        editor.apply();
+    }
+
+    public void whichPreferences(){
+        SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
+        if (sharedPreferences.contains("nameWorkout1")){
+            sharedPreferences=getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+            if (sharedPreferences.contains("nameWorkout1")){
+                sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+                Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
+
+            }else{
+                Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        saveWorkout();
+        editor.putString("nameWorkout1", name_workout.getText().toString());
+        editor.putInt("specialRest1", rest[0]);
+        editor.putInt("specialRest2", rest[1]);
+        editor.putInt("specialRest3", rest[2]);
+        editor.putInt("specialRest4", rest[3]);
+        editor.putInt("specialRest5", rest[4]);
+        editor.putInt("specialRest6", rest[5]);
+        editor.apply();
+
+    }
 
 
     public Exercise setExercise(Exercise e, int v, int w, CheckBox r, int y, int z) {
@@ -588,7 +785,6 @@ Pour utiliser "Parcelable", il faut :
         e.nbreps=Integer.parseInt(((EditText)findViewById(w)).getText().toString());}catch (Exception excep){
            //Toast.makeText(this, "Default repetitions/series applied on exercise(s) ! ", Toast.LENGTH_LONG).show();
         }
-        //TODO Gérer d'une autre manière cette exception afin d'empêcher à l'utilisateur d'aller sur la prochaine page
         //Faire un test sur getExercise pour ne pas tomber dans le panneau pour les autres exo non remplis
         if (r.isChecked()){
             e.isPdc=false;
@@ -607,7 +803,6 @@ Pour utiliser "Parcelable", il faut :
     }
 
     public Exercise getExercise(Spinner s){
-        //exoo1
         if (s.getSelectedItem().toString().equals("Bulgarian Split")){
             return new BulgarianSplit();
         }else if (s.getSelectedItem().toString().equals("Lunge")){
@@ -626,7 +821,6 @@ Pour utiliser "Parcelable", il faut :
         }
     }
     public void specialrest(){
-        //TODO btwexo à ajuster pour textview
         try{rest[0]=Integer.parseInt(((EditText)findViewById(R.id.rest1bis)).getText().toString());}catch (Exception e1){};
         try{rest[1]=Integer.parseInt(((EditText)findViewById(R.id.rest2bis)).getText().toString());}catch (Exception e2){};
         try{rest[2]=Integer.parseInt(((EditText)findViewById(R.id.rest3bis)).getText().toString());}catch (Exception e3){};

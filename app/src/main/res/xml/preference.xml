@@ -21,13 +21,5 @@
     <PreferenceCategory android:title="Luminosité">
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="Couleurs">
-        <ListPreference
-            android:key="listPref"
-            android:dialogTitle="Choisissez une couleur"
-            android:entries="@array/liste_couleurs_fr"
-            android:entryValues="@array/liste_couleurs"
-            android:title="Choisir couleur" />
 
-    </PreferenceCategory>
 </PreferenceScreen>

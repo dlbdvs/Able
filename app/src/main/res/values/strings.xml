@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Jpec</string>
 
-    <!-- Strings related to login -->
     <string name="cancel">Cancel</string>
     <string name="rest">Rest</string>
     <string name="start">Start</string>
@@ -45,6 +44,8 @@
     <string name="save_for_later">Save for later</string>
     <string name="restbis">Rest before next exercise :</string>
     <string name="resttest">Time to next exercise : %1$d sec</string>
+    <string name="current_lvl">Current lvl :</string>
+    <string name="caracteristics">Caracteristics</string>
 
     <string-array name="listofexos">
         <item>Leg</item>
@@ -59,16 +60,16 @@
         <!-- FIN AJOUTEE-->
 
     </string-array>
-        <array name="liste_couleurs_fr">
-            <item>Bleu</item>
-            <item>Rouge</item>
-            <item>Vert</item>
-        </array>
-        <array name="liste_couleurs">
-            <item>blue</item>
-            <item>red</item>
-            <item>green</item>
-        </array>
+    
+    
+    
+
+    <style name="commontext">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="titletext">
+        <item name="android:textSize">30sp</item>
+    </style>
 
 
 
