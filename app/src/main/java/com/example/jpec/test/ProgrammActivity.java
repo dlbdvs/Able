@@ -1,23 +1,77 @@
 package com.example.jpec.test;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by jpec on 23/12/16.
  */
 
 public class ProgrammActivity extends Activity implements Serializable{
+
+    String exoo1name;
+    String exoo2name;
+    String exoo3name;
+    String exoo4name;
+    String exoo5name;
+    String exoo6name;
+    String exoo7name;
+    String exoo8name;
+
+    int exoo1serie;
+    int exoo2serie;
+    int exoo3serie;
+    int exoo4serie;
+    int exoo5serie;
+    int exoo6serie;
+    int exoo7serie;
+    int exoo8serie;
+
+    int exoo1weight;
+    int exoo2weight;
+    int exoo3weight;
+    int exoo4weight;
+    int exoo5weight;
+    int exoo6weight;
+    int exoo7weight;
+    int exoo8weight;
+
+    int exoo1rest;
+    int exoo2rest;
+    int exoo3rest;
+    int exoo4rest;
+    int exoo5rest;
+    int exoo6rest;
+    int exoo7rest;
+    int exoo8rest;
+
+    int exoo1rep;
+    int exoo2rep;
+    int exoo3rep;
+    int exoo4rep;
+    int exoo5rep;
+    int exoo6rep;
+    int exoo7rep;
+    int exoo8rep;
+    int currentrep=0;
+
+
 
     private boolean started=false;
     private TextView exo8;
@@ -52,18 +106,19 @@ public class ProgrammActivity extends Activity implements Serializable{
 
     protected Exercise exoo1=new Lunges(1, 20);
     protected Exercise exoo2;
-    //protected Exercise exoo2=new CloseGripPullUps(70, 4, 18);
     protected Exercise exoo3;
     protected Exercise exoo4;
     protected Exercise exoo5;
     protected Exercise exoo6;
     protected Exercise exoo7;
-    //protected Exercise exoo8;
     protected Exercise exoo8;
     protected Exercise currentExo=exoo1;
 
     private Button start_workout;
     private Button done;
+    private NumberPicker numberPicker;
+    Workout_DbHelper db;
+    int pickednumber=0;
 
     int[] rest= new int[6];
     int compteur_exo=1;
@@ -92,18 +147,30 @@ public class ProgrammActivity extends Activity implements Serializable{
                             }
                         }
                         currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + current_rest);
-
+                        numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
+                        numberPicker.setMaxValue(500);
+                        numberPicker.setMinValue(0);
+                        numberPicker.setWrapSelectorWheel(false);
+                        numberPicker.setValue(currentExo.getNbreps());
                     }
                     compteur_serie++;
 
+                        workoutDatabase();
+                        //FIN
+
+
                     done=(Button)findViewById(R.id.done);
                     done.setOnClickListener(onClick);}catch (Exception e){
+                        //TODO
+                        db=new Workout_DbHelper(v.getContext());
+                        updateDatabase(currentrep+10, db.getWritableDatabase() );
                         Intent intent = new Intent(v.getContext(), EndOfWorkout.class);
                         startActivity(intent);
                     }
                     break;
-                case R.id.done:    //Envoyer sur l'exo d'après grace à un bouton approprié
-                    nextExercice(); //new here
+                case R.id.done:
+                    nextExercice();
+                    pickednumber=numberPicker.getValue();
                     Intent intent = new Intent(v.getContext(), CountDownActivity.class);
                     intent.putExtra("next", next);
                     intent.putExtra("compteur_exo", compteur_exo);
@@ -121,6 +188,8 @@ public class ProgrammActivity extends Activity implements Serializable{
                     intent.putExtra("exoo8", exoo8);
                     intent.putExtra("name_workout", name_workout);
                     intent.putExtra("restspecial", rest);
+                    intent.putExtra("pickednumber", pickednumber);
+                    intent.putExtra("currentrep", currentrep);//TODO
                     startActivity(intent);
                     break;
             }
@@ -164,6 +233,8 @@ public class ProgrammActivity extends Activity implements Serializable{
             }
             if (b.get("started") != null){
                 started=(boolean)b.get("started");
+                pickednumber=(int)b.get("pickednumber");
+                currentrep=(int)b.get("currentrep");//TODO
             }
 
 
@@ -234,17 +305,21 @@ public class ProgrammActivity extends Activity implements Serializable{
                 currentserie = (TextView) findViewById(R.id.current_repserie);
                 if (currentExo != null) { //Test inutile
                     currentexo.setText(currentExo.getNom());
-                    //currentserie.setText("Serie n° : "+compteur_serie+" / "+currentExo.getNbseries()+"\nReps : "+currentExo.getNbreps());
                     currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + (int) currentExo.getRepos());
-
+                    numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
+                    numberPicker.setMaxValue(500);
+                    numberPicker.setMinValue(0);
+                    numberPicker.setWrapSelectorWheel(false);
+                    numberPicker.setValue(currentExo.getNbreps());
                 }
                 compteur_serie++;
-                //nextExercice();
 
                 done = (Button) findViewById(R.id.done);
                 done.setOnClickListener(onClick);
             } catch (Exception e) {
-                Intent intent2 = new Intent(this, EndOfWorkout.class);
+                db=new Workout_DbHelper(this);
+                updateDatabase(currentrep+10, db.getWritableDatabase() );
+                Intent intent2 = new Intent(this, EndOfWorkout.class);//TODO
                 startActivity(intent2);
             }
         }
@@ -256,6 +331,142 @@ public class ProgrammActivity extends Activity implements Serializable{
 
 
     }
+    //TODO TRAVAILLER ICI
+    /*
+    Il faudrait faire en sorte d'enregistrer
+    De mettre à jour quand on change d'exo (next == true) et quand on désire quitter l'entraînement (prochainement)
+     */
+    public void updateDatabase(int value, SQLiteDatabase sqLiteDatabase){
+        ContentValues values = new ContentValues();
+        if (currentExo == exoo1){
+            values.put(Workout_DbHelper.COL41, value);
+        }
+        if (currentExo == exoo2){
+            values.put(Workout_DbHelper.COL42, value);
+        }
+        if (currentExo == exoo3){
+            values.put(Workout_DbHelper.COL43, value);
+        }
+        if (currentExo == exoo4){
+            values.put(Workout_DbHelper.COL44, value);
+        }
+        if (currentExo == exoo5){
+            values.put(Workout_DbHelper.COL45, value);
+        }
+        if (currentExo == exoo6){
+            values.put(Workout_DbHelper.COL46, value);
+        }
+        if (currentExo == exoo7){
+            values.put(Workout_DbHelper.COL47, value);
+        }
+        if (currentExo == exoo8){
+            values.put(Workout_DbHelper.COL48, value);
+        }
+        String selection=Workout_DbHelper.COL8+ " LIKE ?";
+        String[] selectionArgs = {"test"}; //TODO Rendre la date accessible malgré le changement d'activité ou l'ID
+        sqLiteDatabase.update(Workout_DbHelper.TABLE_NAME,values,selection,selectionArgs);
+    }
+
+/*
+SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+// New value for one column
+ContentValues values = new ContentValues();
+values.put(FeedEntry.COLUMN_NAME_TITLE, title);
+
+// Which row to update, based on the title
+String selection = FeedEntry.COLUMN_NAME_TITLE + " LIKE ?";
+String[] selectionArgs = { "MyTitle" };
+
+int count = db.update(
+    FeedReaderDbHelper.FeedEntry.TABLE_NAME,
+    values,
+    selection,
+    selectionArgs);
+
+ */
+
+
+    public void prepaDatabase(){
+        try{
+            exoo1name=exoo1.getNom();
+            exoo1serie=exoo1.getNbseries();
+            exoo1weight=exoo1.getPoids();
+            exoo1rest=(int)exoo1.getRepos();
+        }catch (Exception a){}
+        try{
+            exoo2name=exoo2.getNom();
+            exoo2serie=exoo2.getNbseries();
+            exoo2weight=exoo2.getPoids();
+            exoo2rest=(int)exoo2.getRepos();
+        }catch (Exception a){}
+        try{
+            exoo3name=exoo3.getNom();
+            exoo3serie=exoo3.getNbseries();
+            exoo3weight=exoo3.getPoids();
+            exoo3rest=(int)exoo3.getRepos();
+        }catch (Exception a){}
+
+        try{
+            exoo4name=exoo4.getNom();
+            exoo4serie=exoo4.getNbseries();
+            exoo4weight=exoo4.getPoids();
+            exoo4rest=(int)exoo4.getRepos();
+        }catch (Exception a){}
+
+        try{
+            exoo5name=exoo5.getNom();
+            exoo5serie=exoo5.getNbseries();
+            exoo5weight=exoo5.getPoids();
+            exoo5rest=(int)exoo5.getRepos();
+        }catch (Exception a){}
+
+        try{
+            exoo6name=exoo6.getNom();
+            exoo6serie=exoo6.getNbseries();
+            exoo6weight=exoo6.getPoids();
+            exoo6rest=(int)exoo6.getRepos();
+        }catch (Exception a){}
+
+        try{
+            exoo7name=exoo7.getNom();
+            exoo7serie=exoo7.getNbseries();
+            exoo7weight=exoo7.getPoids();
+            exoo7rest=(int)exoo7.getRepos();
+        }catch (Exception a){}
+
+        try{
+            exoo8name=exoo8.getNom();
+            exoo8serie=exoo8.getNbseries();
+            exoo8weight=exoo8.getPoids();
+            exoo8rest=(int)exoo8.getRepos();
+        }catch (Exception a){}
+
+    }
+
+
+    public void workoutDatabase(){
+        prepaDatabase();
+        SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        String uname=sharedPreferences.getString("username","");
+        String day="test";
+        db=new Workout_DbHelper(this);
+        db.addData(uname,name_workout,
+                exoo1name,0, exoo1serie,exoo1weight,exoo1rest,
+                exoo2name,0, exoo2serie,exoo2weight,exoo2rest,
+                exoo3name,0, exoo3serie,exoo3weight,exoo3rest,
+                exoo4name,0, exoo4serie,exoo4weight,exoo4rest,
+                exoo5name,0, exoo5serie,exoo5weight,exoo5rest,
+                exoo6name,0, exoo6serie,exoo6weight,exoo6rest,
+                exoo7name,0, exoo7serie,exoo7weight,exoo7rest,
+                exoo8name,0, exoo8serie,exoo8weight,exoo8rest,
+                day, rest[0], rest[1], rest[2], rest[3], rest[4], rest[5]
+                );
+    }
+
+
+
+
     protected void attribution(Exercise e,TextView t, int i, LinearLayout l){
         if (e != null) {
             t = (TextView) findViewById(i);
@@ -271,11 +482,15 @@ public class ProgrammActivity extends Activity implements Serializable{
             compteur_serie=1;
             compteur_exo+=1;
             next=true;
+            db=new Workout_DbHelper(this);
+            updateDatabase(currentrep, db.getWritableDatabase());
+            currentrep=0;
             if (rest[compteur_exo-2] != 0) {
                 current_rest = rest[compteur_exo - 2];
             }
         }else{
             next=false;
+            currentrep+=numberPicker.getValue();
         }
 
 

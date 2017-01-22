@@ -667,12 +667,8 @@ Pour utiliser "Parcelable", il faut :
                     }else{
                         Toast.makeText(v.getContext(), "Nooooo....", Toast.LENGTH_SHORT).show();
                     }*/
-
-
                     //FIN AJOUT
-//TODO Enlever ça si bug ATTENTION V DEVENU FINAL
                     AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
-                    //View view=getLayoutInflater().inflate(R.layout.dialog_overrideworkout,null);
                     builder.setTitle(R.string.confirm_reini_workout1m);
                             builder.setItems(R.array.initworkout, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -704,10 +700,6 @@ Pour utiliser "Parcelable", il faut :
                             });
                     AlertDialog dialog = builder.create();
                     dialog.show();
-//TODO DECOMMENTER CA : Construire un dialog alert adapté pour demander quel truc supprimer, PUIS mettre le lien vers Choose
-                    //whichPreferences();
-                    //Intent w = new Intent(v.getContext(), ChooseProg.class);
-                    //startActivity(w);
                     break;
             }
         }
@@ -722,51 +714,9 @@ Pour utiliser "Parcelable", il faut :
         if (perso ==0) {
 
             if (sharedPreferences.contains("nameWorkout1")) {
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.confirm_reini_workout1);
-                builder.setMessage(R.string.confirm_reini_workout1m);
-                builder.setNegativeButton(R.string.no, null);
-                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        perso = 1;
-                        saveWorkout();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();*/
-
                 sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
                 if (sharedPreferences.contains("nameWorkout1")) {
-                    /*AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                    builder2.setTitle(R.string.confirm_reini_workout1);
-                    builder2.setMessage(R.string.confirm_reini_workout1m);
-                    builder2.setNegativeButton(R.string.no, null);
-                    builder2.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            perso = 2;
-                            saveWorkout();
-                        }
-                    });
-                    AlertDialog dialog2 = builder2.create();
-                    dialog2.show();*/
                     sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
-                    //if (sharedPreferences.contains("nameWorkout1")) {
-                        /*AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
-                        builder3.setTitle(R.string.confirm_reini_workout1);
-                        builder3.setMessage(R.string.confirm_reini_workout1m);
-                        builder3.setNegativeButton(R.string.no, null);
-                        builder3.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                perso = 3;
-                                saveWorkout();
-                            }
-                        });
-                        AlertDialog dialog3 = builder3.create();
-                        dialog3.show();*/
-                    //}
                 }
             }
         }else if (perso==2){
@@ -900,7 +850,7 @@ Pour utiliser "Parcelable", il faut :
         e.nbreps=Integer.parseInt(((EditText)findViewById(w)).getText().toString());}catch (Exception excep){
            //Toast.makeText(this, "Default repetitions/series applied on exercise(s) ! ", Toast.LENGTH_LONG).show();
         }
-        //Faire un test sur getExercise pour ne pas tomber dans le panneau pour les autres exo non remplis
+        //Faire un test_numberpicker sur getExercise pour ne pas tomber dans le panneau pour les autres exo non remplis
         if (r.isChecked()){
             e.isPdc=false;
             e.setPoids(Integer.parseInt(((EditText)findViewById(y)).getText().toString()));

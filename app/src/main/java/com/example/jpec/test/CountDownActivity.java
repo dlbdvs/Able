@@ -33,6 +33,8 @@ public class CountDownActivity extends Activity {
     public boolean isCreated;
     public boolean next;
     int[] rest =new int[6];
+    int currentrep;
+    int pickednumber;
 
 
 
@@ -99,6 +101,8 @@ public class CountDownActivity extends Activity {
                     intent.putExtra("name_workout", name_workout);
                     intent.putExtra("started", started);
                     intent.putExtra("restspecial", rest);
+                    intent.putExtra("pickednumber", pickednumber);
+                    intent.putExtra("currentrep", currentrep);//TODO
 
 
                     startActivity(intent);
@@ -113,11 +117,13 @@ public class CountDownActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown);
-        Intent intent = getIntent();            //Récupère les données de Shit
+        Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
         if(b!=null)
         {
+            pickednumber=(int)b.get("pickednumber");
+            currentrep=(int) b.get("currentrep");//TODO
             compteur_exo=(int) b.get("compteur_exo");
             compteur_serie=(int) b.get("compteur_serie");
             current_rest=(int) b.get("current_rest");
@@ -186,8 +192,53 @@ public class CountDownActivity extends Activity {
             @Override
             public void onFinish() {
                 mySound.start(); //Joue simplement le son déjà initialisé
-                time.setText("Done !");
-                cancel.setText("Next Exercise !");
+                //time.setText("Done !");
+                //cancel.setText("Next Exercise !");
+
+                cancel();
+                Intent intent = new Intent(getApplicationContext(), ProgrammActivity.class);
+                if (exoo1 != null){
+                    intent.putExtra("exoo1", exoo1);
+                }
+                if (exoo2 != null){
+                    intent.putExtra("exoo2", exoo2);
+                }
+                if (exoo3 != null){
+                    intent.putExtra("exoo3", exoo3);
+                }
+                if (exoo4 != null){
+                    intent.putExtra("exoo4", exoo4);
+                }
+                if (exoo5 != null){
+                    intent.putExtra("exoo5", exoo5);
+                }
+                if (exoo6 != null){
+                    intent.putExtra("exoo6", exoo6);
+                }
+                if (exoo7 != null){
+                    intent.putExtra("exoo7", exoo7);
+                }
+                if (exoo8 != null){
+                    intent.putExtra("exoo8", exoo8);
+                }
+
+
+                intent.putExtra("compteur_exo", compteur_exo);
+                intent.putExtra("compteur_serie", compteur_serie);
+                intent.putExtra("currentExo", currentExo);
+                intent.putExtra("isCreated", isCreated);
+                intent.putExtra("name_workout", name_workout);
+                intent.putExtra("started", started);
+                intent.putExtra("restspecial", rest);
+                intent.putExtra("currentrep", currentrep);//TODO
+                intent.putExtra("pickednumber", pickednumber);
+
+
+
+                startActivity(intent);
+
+
+
             }
 
 

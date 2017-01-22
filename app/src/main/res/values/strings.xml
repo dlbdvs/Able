@@ -46,12 +46,8 @@
     <string name="resttest">Time to next exercise : %1$d sec</string>
     <string name="current_lvl">Current lvl :</string>
     <string name="caracteristics">Caracteristics</string>
-    <string name="confirm_reini_workout1">Override your first workout</string>
     <string name="confirm_reini_workout1m">Which workout would you like to override ?</string>
-    <string name="first">The first one</string>
-    <string name="second">The second one</string>
-    <string name="third">The third one</string>
-    <string name="none">None of them</string>
+
 
     <string-array name="initworkout">
         <item>The first one</item>
