@@ -221,8 +221,10 @@ public class ChooseProg extends Activity {
 
         }};
 
+    //On récupère les données des exos stockés dans SharedPreferences.
     public void whichPreference(View v){
         SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
+        //Le switch permet de définir quel entraînement on choisit en modifiant la source que l'on choisit de consulter
         switch (v.getId()){
             case R.id.workoutperso1:
                 break;

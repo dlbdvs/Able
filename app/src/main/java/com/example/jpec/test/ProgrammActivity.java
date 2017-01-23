@@ -61,14 +61,6 @@ public class ProgrammActivity extends Activity implements Serializable{
     int exoo7rest;
     int exoo8rest;
 
-    int exoo1rep;
-    int exoo2rep;
-    int exoo3rep;
-    int exoo4rep;
-    int exoo5rep;
-    int exoo6rep;
-    int exoo7rep;
-    int exoo8rep;
     int currentrep=0;
 
 
@@ -136,8 +128,10 @@ public class ProgrammActivity extends Activity implements Serializable{
                 case R.id.start_workout:
                     try{
                     setContentView(R.layout.activity_exercise);
-                    whichExercise();
-                    currentexo=(TextView)findViewById(R.id.current_exo);
+                    whichExercise();                        //Méthode permettant de savoir quel est l'exercice courant à partir du compteur_exo
+
+                        /*Gestion de l'affichage de l'exo à faire apparaître*/
+                        currentexo=(TextView)findViewById(R.id.current_exo);
                     currentserie=(TextView)findViewById(R.id.current_repserie);
                     if (currentExo != null) {
                         currentexo.setText(currentExo.getNom());
@@ -156,23 +150,25 @@ public class ProgrammActivity extends Activity implements Serializable{
                     compteur_serie++;
 
                         workoutDatabase();
-                        //FIN
 
-
-                    done=(Button)findViewById(R.id.done);
-                    done.setOnClickListener(onClick);}catch (Exception e){
-                        //TODO
+                        done=(Button)findViewById(R.id.done);
+                        done.setOnClickListener(onClick);
+                    }catch (Exception e){
+                        //Ceci est effectué si une exception est attrapée ie si on arrive à la fin de l'entraînement
+                        //Mise à jour de la base de données au niveau des répétitions effectuées
                         db=new Workout_DbHelper(v.getContext());
-                        //Toast.makeText(v.getContext(), "AOn a au total :"+(currentrep+pickednumber), Toast.LENGTH_SHORT).show();
-                        //updateDatabase(currentrep+pickednumber, db.getWritableDatabase() );
                         updateDatabase2(currentrep+pickednumber);
+                        //Lance la page de fin de l'entraînement
                         Intent intent = new Intent(v.getContext(), EndOfWorkout.class);
                         startActivity(intent);
                     }
                     break;
                 case R.id.done:
-                    pickednumber=numberPicker.getValue();
-                    nextExercice();
+                    pickednumber=numberPicker.getValue(); //Récupère la valeur indiquée par l'utilisateur après un exercice
+                    nextExercice();//Détermine le prochain exo
+                    /*
+                    On rajoute des données que l'on transfère de pages en pages
+                     */
                     Intent intent = new Intent(v.getContext(), CountDownActivity.class);
                     intent.putExtra("next", next);
                     intent.putExtra("compteur_exo", compteur_exo);
@@ -202,8 +198,8 @@ public class ProgrammActivity extends Activity implements Serializable{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        whichExercise();
-        Intent intent = getIntent();            //Récupère les données de CountDownActivity
+        whichExercise(); //Gère l'affichage de l'exo à effectuer
+        Intent intent = getIntent();            //Récupération de données
         Bundle b = intent.getExtras();
         if(b!=null)
         {
@@ -253,6 +249,7 @@ public class ProgrammActivity extends Activity implements Serializable{
         restbis6=(TextView)findViewById(R.id.btwexo6);
         restbis7=(TextView)findViewById(R.id.btwexo7);
 
+        //Permet l'affichage des temps de repos entre exercices précisés par l'utilisateur dans CreateProgramm
         setViewSpecialRest();
 
 
@@ -275,6 +272,9 @@ public class ProgrammActivity extends Activity implements Serializable{
 
         exo1=(TextView)findViewById(R.id.exo1);
         exo1.setText(exoo1.getNom()+"\nSerie(s) : "+exoo1.getNbseries()+"  Reps : "+exoo1.getNbreps()+"  Weight : "+exoo1.getPoids()+"  Rest : "+(int)exoo1.getRepos());
+        /*
+        Permet l'affichage sur ProgrammActivity des exos non nuls indiqués dans le programme (on cache les layout sinon)
+         */
         attribution(exoo2,exo2, R.id.exo2, L2);
         attribution(exoo3,exo3, R.id.exo3, L3);
         attribution(exoo4,exo4, R.id.exo4, L4);
@@ -332,10 +332,11 @@ public class ProgrammActivity extends Activity implements Serializable{
 
     }
     //TODO TRAVAILLER ICI
-    /*
-    Il faudrait faire en sorte d'enregistrer
-    De mettre à jour quand on change d'exo (next == true) et quand on désire quitter l'entraînement (prochainement)
-     */
+
+    public void purgeDatabase(){
+
+    }
+    //Met à jour la base de données en fonction de l'exo effectué
     public void updateDatabase2(int value){
         String col="";
         if (currentExo == exoo1){
@@ -364,38 +365,8 @@ public class ProgrammActivity extends Activity implements Serializable{
         }
         db.getWritableDatabase().execSQL("UPDATE "+Workout_DbHelper.TABLE_NAME+" SET "+col+" ='"+value+"' WHERE ID = (SELECT MAX(ID) FROM "+Workout_DbHelper.TABLE_NAME+" ) ");
     }
-    /*public void updateDatabase(int value, SQLiteDatabase sqLiteDatabase){
-        ContentValues values = new ContentValues();
-        if (currentExo == exoo1){
-            values.put(Workout_DbHelper.COL41, value);
-        }
-        if (currentExo == exoo2){
-            values.put(Workout_DbHelper.COL42, value);
-        }
-        if (currentExo == exoo3){
-            values.put(Workout_DbHelper.COL43, value);
-        }
-        if (currentExo == exoo4){
-            values.put(Workout_DbHelper.COL44, value);
-        }
-        if (currentExo == exoo5){
-            values.put(Workout_DbHelper.COL45, value);
-        }
-        if (currentExo == exoo6){
-            values.put(Workout_DbHelper.COL46, value);
-        }
-        if (currentExo == exoo7){
-            values.put(Workout_DbHelper.COL47, value);
-        }
-        if (currentExo == exoo8){
-            values.put(Workout_DbHelper.COL48, value);
-        }
-        String selection=Workout_DbHelper.COL8+ " LIKE ?";
-        String[] selectionArgs = {"test"+Workout_DbHelper.TABLE_NAME+")"}; //TODO Rendre la date accessible malgré le changement d'activité ou l'ID
-        sqLiteDatabase.update(Workout_DbHelper.TABLE_NAME,values,selection,selectionArgs);
-    }*/
 
-
+    //Cette méthode prépare la mise à jour de la db en attrapant les exceptions qui pourraient provenir d'un exo=null
     public void prepaDatabase(){
         try{
             exoo1name=exoo1.getNom();
@@ -453,7 +424,7 @@ public class ProgrammActivity extends Activity implements Serializable{
 
     }
 
-
+//Création d'une ligne dans la base de données que l'on pourra modifier par la suite grâce à updateDatabase
     public void workoutDatabase(){
         prepaDatabase();
         SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);

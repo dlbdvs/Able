@@ -1,8 +1,6 @@
 package com.example.jpec.test;
 
-/**
- * Created by jpec on 22/12/16.
- */
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -35,6 +33,7 @@ public class CountDownActivity extends Activity {
     int[] rest =new int[6];
     int currentrep;
     int pickednumber;
+    Workout_DbHelper db;
 
 
 
@@ -42,6 +41,7 @@ public class CountDownActivity extends Activity {
     //Initialisation des variables
     private Button start;
     private Button cancel;
+    private Button quit;
     private CountDownTimer countDownTimer;
     private TextView time;
     private Exercise exoo1;
@@ -53,7 +53,6 @@ public class CountDownActivity extends Activity {
     private Exercise exoo7;
     private Exercise exoo8;
     //private TextView commentaire;
-    //private long remainingtime;
 
 
     //Fonction pour réagir au clic
@@ -64,6 +63,14 @@ public class CountDownActivity extends Activity {
             switch(v.getId()) {
                 case R.id.b_start:
                     start();
+                    break;
+                case R.id.quit:
+                    cancel();
+                    //Mise à jour de la bdd avant de quitter
+                    db=new Workout_DbHelper(v.getContext());
+                    updateDatabase2(currentrep);
+                    Intent intent2=new Intent(v.getContext(), EndOfWorkout.class);
+                    startActivity(intent2);
                     break;
                 case R.id.b_cancel:
                     cancel();
@@ -146,6 +153,7 @@ public class CountDownActivity extends Activity {
             exoo7= intent.getParcelableExtra("exoo7");
             exoo8= intent.getParcelableExtra("exoo8");
 
+
         }
 
         //Permet aux boutons de réagir en attribuant les fonctions "de réaction" adéquates
@@ -154,6 +162,8 @@ public class CountDownActivity extends Activity {
         cancel=(Button)findViewById(R.id.b_cancel);
         cancel.setOnClickListener(onClick);
         time=(TextView)findViewById(R.id.time);
+        quit=(Button)findViewById(R.id.quit);
+        quit.setOnClickListener(onClick);
         //commentaire=(TextView)findViewById(R.id.commentaire);
 
 
@@ -165,6 +175,36 @@ public class CountDownActivity extends Activity {
         mySound = MediaPlayer.create(this, R.raw.bip);
 
     }
+
+    public void updateDatabase2(int value){
+        String col="";
+        if (compteur_exo==1){
+            col=Workout_DbHelper.COL41;
+        }else
+        if (compteur_exo==2){
+            col=Workout_DbHelper.COL42;
+        }else
+        if (compteur_exo==3){
+            col=Workout_DbHelper.COL43;
+        }else
+        if (compteur_exo==4){
+            col=Workout_DbHelper.COL44;
+        }else
+        if (compteur_exo==5){
+            col=Workout_DbHelper.COL45;
+        }else
+        if (compteur_exo==6){
+            col=Workout_DbHelper.COL46;
+        }else
+        if (compteur_exo==7){
+            col=Workout_DbHelper.COL47;
+        }else
+        if (compteur_exo==8){
+            col=Workout_DbHelper.COL48;
+        }
+        db.getWritableDatabase().execSQL("UPDATE "+Workout_DbHelper.TABLE_NAME+" SET "+col+" ='"+value+"' WHERE ID = (SELECT MAX(ID) FROM "+Workout_DbHelper.TABLE_NAME+" ) ");
+    }
+
 
     public void start(){
 

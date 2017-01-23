@@ -3,18 +3,19 @@ package com.example.jpec.test;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by jpec on 23/12/16.
- */
 
-public class Exercise implements Parcelable{
+
+class Exercise implements Parcelable{
+    /*Grace à cette implémentation, des exercices pourront être transmis de
+    page en page avec les getExtra --> Les exos deviennent Parcelable
+    */
     boolean isPdc;
     String nom;
     int nbreps;
     int nbseries;
     int poids;
-    String muscles;
-    int hold;
+    private String muscles;
+    private int hold;
     double repos;
 
     @Override
@@ -51,7 +52,7 @@ public class Exercise implements Parcelable{
     public Exercise(){
 
     }
-
+//Attention, il faut bien respecter l'ordre dans lequel on définit les variables
     public Exercise(Parcel in) {
         this.isPdc=in.readByte() != 0;
         this.nom = in.readString();
@@ -62,7 +63,9 @@ public class Exercise implements Parcelable{
         this.hold = in.readInt();
         this.repos = in.readDouble();
     }
+//Fin de la mise en Parcelable
 
+    //Permet d'ajuster le temps de repos de manière automatique suivant que l'exo soit au pdc ou non
     protected void defRest(){
         if (isPdc){
             repos=30;

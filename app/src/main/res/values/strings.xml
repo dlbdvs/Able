@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Jpec</string>
 
-    <string name="cancel">Cancel</string>
+    <string name="skip">Skip</string>
     <string name="rest">Rest</string>
     <string name="start">Start</string>
     <string name="exercice_1">Exercice 1</string>
@@ -47,6 +47,7 @@
     <string name="current_lvl">Current lvl :</string>
     <string name="caracteristics">Caracteristics</string>
     <string name="confirm_reini_workout1m">Which workout would you like to override ?</string>
+    <string name="quit">Quit workout</string>
 
 
     <string-array name="initworkout">

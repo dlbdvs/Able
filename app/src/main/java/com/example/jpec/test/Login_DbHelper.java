@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Login_DbHelper extends SQLiteOpenHelper {
 
-
+//Initialisation des différentes colonnes et données de la table
     private static final String DATABASE_NAME="mydb.db";
     private static final String TABLE_NAME="members";
     public static final String COL1="ID";
