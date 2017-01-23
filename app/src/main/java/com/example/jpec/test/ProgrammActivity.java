@@ -163,14 +163,16 @@ public class ProgrammActivity extends Activity implements Serializable{
                     done.setOnClickListener(onClick);}catch (Exception e){
                         //TODO
                         db=new Workout_DbHelper(v.getContext());
-                        updateDatabase(currentrep+10, db.getWritableDatabase() );
+                        //Toast.makeText(v.getContext(), "AOn a au total :"+(currentrep+pickednumber), Toast.LENGTH_SHORT).show();
+                        //updateDatabase(currentrep+pickednumber, db.getWritableDatabase() );
+                        updateDatabase2(currentrep+pickednumber);
                         Intent intent = new Intent(v.getContext(), EndOfWorkout.class);
                         startActivity(intent);
                     }
                     break;
                 case R.id.done:
-                    nextExercice();
                     pickednumber=numberPicker.getValue();
+                    nextExercice();
                     Intent intent = new Intent(v.getContext(), CountDownActivity.class);
                     intent.putExtra("next", next);
                     intent.putExtra("compteur_exo", compteur_exo);
@@ -317,8 +319,6 @@ public class ProgrammActivity extends Activity implements Serializable{
                 done = (Button) findViewById(R.id.done);
                 done.setOnClickListener(onClick);
             } catch (Exception e) {
-                db=new Workout_DbHelper(this);
-                updateDatabase(currentrep+10, db.getWritableDatabase() );
                 Intent intent2 = new Intent(this, EndOfWorkout.class);//TODO
                 startActivity(intent2);
             }
@@ -336,7 +336,35 @@ public class ProgrammActivity extends Activity implements Serializable{
     Il faudrait faire en sorte d'enregistrer
     De mettre à jour quand on change d'exo (next == true) et quand on désire quitter l'entraînement (prochainement)
      */
-    public void updateDatabase(int value, SQLiteDatabase sqLiteDatabase){
+    public void updateDatabase2(int value){
+        String col="";
+        if (currentExo == exoo1){
+            col=Workout_DbHelper.COL41;
+        }
+        if (currentExo == exoo2){
+            col=Workout_DbHelper.COL42;
+        }
+        if (currentExo == exoo3){
+            col=Workout_DbHelper.COL43;
+        }
+        if (currentExo == exoo4){
+            col=Workout_DbHelper.COL44;
+        }
+        if (currentExo == exoo5){
+            col=Workout_DbHelper.COL45;
+        }
+        if (currentExo == exoo6){
+            col=Workout_DbHelper.COL46;
+        }
+        if (currentExo == exoo7){
+            col=Workout_DbHelper.COL47;
+        }
+        if (currentExo == exoo8){
+            col=Workout_DbHelper.COL48;
+        }
+        db.getWritableDatabase().execSQL("UPDATE "+Workout_DbHelper.TABLE_NAME+" SET "+col+" ='"+value+"' WHERE ID = (SELECT MAX(ID) FROM "+Workout_DbHelper.TABLE_NAME+" ) ");
+    }
+    /*public void updateDatabase(int value, SQLiteDatabase sqLiteDatabase){
         ContentValues values = new ContentValues();
         if (currentExo == exoo1){
             values.put(Workout_DbHelper.COL41, value);
@@ -363,28 +391,9 @@ public class ProgrammActivity extends Activity implements Serializable{
             values.put(Workout_DbHelper.COL48, value);
         }
         String selection=Workout_DbHelper.COL8+ " LIKE ?";
-        String[] selectionArgs = {"test"}; //TODO Rendre la date accessible malgré le changement d'activité ou l'ID
+        String[] selectionArgs = {"test"+Workout_DbHelper.TABLE_NAME+")"}; //TODO Rendre la date accessible malgré le changement d'activité ou l'ID
         sqLiteDatabase.update(Workout_DbHelper.TABLE_NAME,values,selection,selectionArgs);
-    }
-
-/*
-SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-// New value for one column
-ContentValues values = new ContentValues();
-values.put(FeedEntry.COLUMN_NAME_TITLE, title);
-
-// Which row to update, based on the title
-String selection = FeedEntry.COLUMN_NAME_TITLE + " LIKE ?";
-String[] selectionArgs = { "MyTitle" };
-
-int count = db.update(
-    FeedReaderDbHelper.FeedEntry.TABLE_NAME,
-    values,
-    selection,
-    selectionArgs);
-
- */
+    }*/
 
 
     public void prepaDatabase(){
@@ -483,14 +492,18 @@ int count = db.update(
             compteur_exo+=1;
             next=true;
             db=new Workout_DbHelper(this);
-            updateDatabase(currentrep, db.getWritableDatabase());
+            currentrep+=pickednumber;
+            //Toast.makeText(this, "D :"+currentrep, Toast.LENGTH_SHORT).show();
+            //updateDatabase(currentrep, db.getWritableDatabase());
+            updateDatabase2(currentrep);
             currentrep=0;
             if (rest[compteur_exo-2] != 0) {
                 current_rest = rest[compteur_exo - 2];
             }
         }else{
             next=false;
-            currentrep+=numberPicker.getValue();
+            //Toast.makeText(this, "COn a au total :"+(currentrep+pickednumber), Toast.LENGTH_SHORT).show();
+            currentrep+=pickednumber;
         }
 
 
