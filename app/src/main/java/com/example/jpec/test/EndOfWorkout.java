@@ -1,9 +1,12 @@
 package com.example.jpec.test;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,11 +21,18 @@ import java.util.ArrayList;
 public class EndOfWorkout extends Activity {
 
     Workout_DbHelper myDB;
+    private Button main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testviewcontents_layout);
+
+        main=(Button)findViewById(R.id.main);
+        main.setOnClickListener(onClick);
+
+
+
 
 
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -44,4 +54,17 @@ public class EndOfWorkout extends Activity {
             }
         }
     }
+    private View.OnClickListener onClick=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.main:
+                    Intent i =new Intent(v.getContext(), MainActivity.class);
+                    startActivity(i);
+                    break;
+            }
+
+
+        }
+    };
 }

@@ -20,6 +20,14 @@ public class ChooseProg extends Activity {
     private Button w5;
     private Button w6;
     private Button w7;
+    private Button w8;
+    private Button w9;
+    private Button w10;
+    private Button w11;
+    private Button w12;
+    private Button w13;
+    private Button w14;
+
 
     int compteur_exo=1;
     int compteur_serie=1;
@@ -68,6 +76,49 @@ public class ChooseProg extends Activity {
         w7.setText(nameworkout3);
         w7.setOnClickListener(onClick);
 
+        w8=(Button)findViewById(R.id.workoutperso4);
+        sharedPreferences=getSharedPreferences("userWorkout4", Context.MODE_PRIVATE);
+        String nameworkout4 = sharedPreferences.getString("nameWorkout1","");
+        w8.setText(nameworkout4);
+        w8.setOnClickListener(onClick);
+
+        w9=(Button)findViewById(R.id.workoutperso5);
+        sharedPreferences=getSharedPreferences("userWorkout5", Context.MODE_PRIVATE);
+        String nameworkout5 = sharedPreferences.getString("nameWorkout1","");
+        w9.setText(nameworkout5);
+        w9.setOnClickListener(onClick);
+
+        w10=(Button)findViewById(R.id.workoutperso6);
+        sharedPreferences=getSharedPreferences("userWorkout6", Context.MODE_PRIVATE);
+        String nameworkout6 = sharedPreferences.getString("nameWorkout1","");
+        w10.setText(nameworkout6);
+        w10.setOnClickListener(onClick);
+
+        w11=(Button)findViewById(R.id.workoutperso7);
+        sharedPreferences=getSharedPreferences("userWorkout7", Context.MODE_PRIVATE);
+        String nameworkout7 = sharedPreferences.getString("nameWorkout1","");
+        w11.setText(nameworkout7);
+        w11.setOnClickListener(onClick);
+
+        w12=(Button)findViewById(R.id.workoutperso8);
+        sharedPreferences=getSharedPreferences("userWorkout8", Context.MODE_PRIVATE);
+        String nameworkout8 = sharedPreferences.getString("nameWorkout1","");
+        w12.setText(nameworkout8);
+        w12.setOnClickListener(onClick);
+
+        w13=(Button)findViewById(R.id.workoutperso9);
+        sharedPreferences=getSharedPreferences("userWorkout9", Context.MODE_PRIVATE);
+        String nameworkout9 = sharedPreferences.getString("nameWorkout1","");
+        w13.setText(nameworkout9);
+        w13.setOnClickListener(onClick);
+
+        w14=(Button)findViewById(R.id.workoutperso10);
+        sharedPreferences=getSharedPreferences("userWorkout10", Context.MODE_PRIVATE);
+        String nameworkout10 = sharedPreferences.getString("nameWorkout1","");
+        w14.setText(nameworkout10);
+        w14.setOnClickListener(onClick);
+        personalButtonLayout();
+
 
 
     }
@@ -80,17 +131,7 @@ public class ChooseProg extends Activity {
                     exoo1=new CloseGripPullUps(5,10,90.0);
                     Intent i1 = new Intent(v.getContext(), ProgrammActivity.class);
                     i1.putExtra("name_workout", "Armstrong -Pull ups- DAY 1");
-                    i1.putExtra("exoo1", exoo1);
-                    i1.putExtra("exoo2", exoo2);
-                    i1.putExtra("exoo3", exoo3);
-                    i1.putExtra("exoo4", exoo4);
-                    i1.putExtra("exoo5", exoo5);
-                    i1.putExtra("exoo6", exoo6);
-                    i1.putExtra("exoo7", exoo7);
-                    i1.putExtra("exoo8", exoo8);
-                    i1.putExtra("compteur_exo", compteur_exo);
-                    i1.putExtra("compteur_serie", compteur_serie);
-                    i1.putExtra("isCreated", isCreated);
+                    extraIntent(i1);
                     startActivity(i1);
                     break;
 
@@ -100,17 +141,7 @@ public class ChooseProg extends Activity {
                     exoo3=new WidePullUps(3,10,60.0);
                     Intent i2 = new Intent(v.getContext(), ProgrammActivity.class);
                     i2.putExtra("name_workout", "Armstrong -Pull ups- DAY 3");
-                    i2.putExtra("exoo1", exoo1);
-                    i2.putExtra("exoo2", exoo2);
-                    i2.putExtra("exoo3", exoo3);
-                    i2.putExtra("exoo4", exoo4);
-                    i2.putExtra("exoo5", exoo5);
-                    i2.putExtra("exoo6", exoo6);
-                    i2.putExtra("exoo7", exoo7);
-                    i2.putExtra("exoo8", exoo8);
-                    i2.putExtra("compteur_exo", compteur_exo);
-                    i2.putExtra("compteur_serie", compteur_serie);
-                    i2.putExtra("isCreated", isCreated);
+                    extraIntent(i2);
                     startActivity(i2);
                     break;
 
@@ -120,54 +151,21 @@ public class ChooseProg extends Activity {
                     exoo3=new WidePullUps(3,10,60.0);
                     Intent i3 = new Intent(v.getContext(), ProgrammActivity.class);
                     i3.putExtra("name_workout", "Armstrong -Pull ups- DAY 3");
-                    i3.putExtra("exoo1", exoo1);
-                    i3.putExtra("exoo2", exoo2);
-                    i3.putExtra("exoo3", exoo3);
-                    i3.putExtra("exoo4", exoo4);
-                    i3.putExtra("exoo5", exoo5);
-                    i3.putExtra("exoo6", exoo6);
-                    i3.putExtra("exoo7", exoo7);
-                    i3.putExtra("exoo8", exoo8);
-                    i3.putExtra("compteur_exo", compteur_exo);
-                    i3.putExtra("compteur_serie", compteur_serie);
-                    i3.putExtra("isCreated", isCreated);
+                    extraIntent(i3);
                     startActivity(i3);
                     break;
                 case R.id.workout4:
                     exoo1=new CloseGripPullUps(20,10,60.0);
                     Intent i4 = new Intent(v.getContext(), ProgrammActivity.class);
                     i4.putExtra("name_workout", "Armstrong -Pull ups- DAY 1");
-                    i4.putExtra("exoo1", exoo1);
-                    i4.putExtra("exoo2", exoo2);
-                    i4.putExtra("exoo3", exoo3);
-                    i4.putExtra("exoo4", exoo4);
-                    i4.putExtra("exoo5", exoo5);
-                    i4.putExtra("exoo6", exoo6);
-                    i4.putExtra("exoo7", exoo7);
-                    i4.putExtra("exoo8", exoo8);
-                    i4.putExtra("compteur_exo", compteur_exo);
-                    i4.putExtra("compteur_serie", compteur_serie);
-                    i4.putExtra("isCreated", isCreated);
+                    extraIntent(i4);
                     startActivity(i4);
                     break;
                 case R.id.workoutperso1:
                     whichPreference(v);
 
                     Intent i5=new Intent(v.getContext(), ProgrammActivity.class);
-                    i5.putExtra("isCreated", isCreated);
-                    i5.putExtra("name_workout", nameworkout1);
-                    i5.putExtra("exoo1", exoo1);
-                    i5.putExtra("exoo2", exoo2);
-                    i5.putExtra("exoo3", exoo3);
-                    i5.putExtra("exoo4", exoo4);
-                    i5.putExtra("exoo5", exoo5);
-                    i5.putExtra("exoo6", exoo6);
-                    i5.putExtra("exoo7", exoo7);
-                    i5.putExtra("exoo8", exoo8);
-                    i5.putExtra("compteur_exo", compteur_exo);
-                    i5.putExtra("compteur_serie", compteur_serie);
-                    i5.putExtra("restspecial",rest);
-
+                    extraIntentPerso(i5);
                     startActivity(i5);
 
                     break;
@@ -176,19 +174,7 @@ public class ChooseProg extends Activity {
                     whichPreference(v);
 
                     Intent i6=new Intent(v.getContext(), ProgrammActivity.class);
-                    i6.putExtra("isCreated", isCreated);
-                    i6.putExtra("name_workout", nameworkout1);
-                    i6.putExtra("exoo1", exoo1);
-                    i6.putExtra("exoo2", exoo2);
-                    i6.putExtra("exoo3", exoo3);
-                    i6.putExtra("exoo4", exoo4);
-                    i6.putExtra("exoo5", exoo5);
-                    i6.putExtra("exoo6", exoo6);
-                    i6.putExtra("exoo7", exoo7);
-                    i6.putExtra("exoo8", exoo8);
-                    i6.putExtra("compteur_exo", compteur_exo);
-                    i6.putExtra("compteur_serie", compteur_serie);
-                    i6.putExtra("restspecial",rest);
+                    extraIntentPerso(i6);
 
                     startActivity(i6);
 
@@ -198,28 +184,137 @@ public class ChooseProg extends Activity {
                     whichPreference(v);
 
                     Intent i7=new Intent(v.getContext(), ProgrammActivity.class);
-                    i7.putExtra("isCreated", isCreated);
-                    i7.putExtra("name_workout", nameworkout1);
-                    i7.putExtra("exoo1", exoo1);
-                    i7.putExtra("exoo2", exoo2);
-                    i7.putExtra("exoo3", exoo3);
-                    i7.putExtra("exoo4", exoo4);
-                    i7.putExtra("exoo5", exoo5);
-                    i7.putExtra("exoo6", exoo6);
-                    i7.putExtra("exoo7", exoo7);
-                    i7.putExtra("exoo8", exoo8);
-                    i7.putExtra("compteur_exo", compteur_exo);
-                    i7.putExtra("compteur_serie", compteur_serie);
-                    i7.putExtra("restspecial",rest);
-
+                    extraIntentPerso(i7);
                     startActivity(i7);
 
+                    break;
+
+                case R.id.workoutperso4:
+                    whichPreference(v);
+
+                    Intent i8=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i8);
+                    startActivity(i8);
+                    break;
+                case R.id.workoutperso5:
+                    whichPreference(v);
+
+                    Intent i9=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i9);
+                    startActivity(i9);
+                    break;
+
+                case R.id.workoutperso6:
+                    whichPreference(v);
+
+                    Intent i10=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i10);
+                    startActivity(i10);
+                    break;
+                case R.id.workoutperso7:
+                    whichPreference(v);
+
+                    Intent i11=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i11);
+                    startActivity(i11);
+                    break;
+                case R.id.workoutperso8:
+                    whichPreference(v);
+
+                    Intent i12=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i12);
+                    startActivity(i12);
+                    break;
+                case R.id.workoutperso9:
+                    whichPreference(v);
+
+                    Intent i13=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i13);
+                    startActivity(i13);
+                    break;
+                case R.id.workoutperso10:
+                    whichPreference(v);
+
+                    Intent i14=new Intent(v.getContext(), ProgrammActivity.class);
+                    extraIntentPerso(i14);
+                    startActivity(i14);
                     break;
 
 
             }
 
         }};
+    public void personalButtonLayout (){
+        SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w5.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w6.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w7.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout4", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w8.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout5", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w9.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout6", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w10.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout7", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w11.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout8", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w12.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout9", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w13.setVisibility(View.GONE);
+        }
+        sharedPreferences=getSharedPreferences("userWorkout10", Context.MODE_PRIVATE);
+        if (!sharedPreferences.contains("nameWorkout1")){
+            w14.setVisibility(View.GONE);
+        }
+    }
+    public void extraIntent(Intent i1){
+        i1.putExtra("exoo1", exoo1);
+        i1.putExtra("exoo2", exoo2);
+        i1.putExtra("exoo3", exoo3);
+        i1.putExtra("exoo4", exoo4);
+        i1.putExtra("exoo5", exoo5);
+        i1.putExtra("exoo6", exoo6);
+        i1.putExtra("exoo7", exoo7);
+        i1.putExtra("exoo8", exoo8);
+        i1.putExtra("compteur_exo", compteur_exo);
+        i1.putExtra("compteur_serie", compteur_serie);
+        i1.putExtra("isCreated", isCreated);
+    }
+
+    public void extraIntentPerso(Intent i8){
+        i8.putExtra("isCreated", isCreated);
+        i8.putExtra("name_workout", nameworkout1);
+        i8.putExtra("exoo1", exoo1);
+        i8.putExtra("exoo2", exoo2);
+        i8.putExtra("exoo3", exoo3);
+        i8.putExtra("exoo4", exoo4);
+        i8.putExtra("exoo5", exoo5);
+        i8.putExtra("exoo6", exoo6);
+        i8.putExtra("exoo7", exoo7);
+        i8.putExtra("exoo8", exoo8);
+        i8.putExtra("compteur_exo", compteur_exo);
+        i8.putExtra("compteur_serie", compteur_serie);
+        i8.putExtra("restspecial",rest);
+    }
 
     //On récupère les données des exos stockés dans SharedPreferences.
     public void whichPreference(View v){
@@ -234,6 +329,29 @@ public class ChooseProg extends Activity {
             case R.id.workoutperso3:
                 sharedPreferences=getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
                 break;
+
+            case R.id.workoutperso4:
+                sharedPreferences=getSharedPreferences("userWorkout4", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso5:
+                sharedPreferences=getSharedPreferences("userWorkout5", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso6:
+                sharedPreferences=getSharedPreferences("userWorkout6", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso7:
+                sharedPreferences=getSharedPreferences("userWorkout7", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso8:
+                sharedPreferences=getSharedPreferences("userWorkout8", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso9:
+                sharedPreferences=getSharedPreferences("userWorkout9", Context.MODE_PRIVATE);
+                break;
+            case R.id.workoutperso10:
+                sharedPreferences=getSharedPreferences("userWorkout10", Context.MODE_PRIVATE);
+                break;
+
         }
         nameworkout1 = sharedPreferences.getString("nameWorkout1","");
         String exo1 = sharedPreferences.getString("exo1","");
@@ -317,7 +435,7 @@ public class ChooseProg extends Activity {
             case "Squat":
                 return new Squat();
             case "Squat Hold":
-                return new Squat();                         //EN ATTENDANT !
+                return new SquatHold();
 
 
             case "Narrow Push Up":

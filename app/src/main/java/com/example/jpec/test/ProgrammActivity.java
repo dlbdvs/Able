@@ -127,10 +127,41 @@ public class ProgrammActivity extends Activity implements Serializable{
             switch(v.getId()) {
                 case R.id.start_workout:
                     try{
+                        whichExercise();                        //Méthode permettant de savoir quel est l'exercice courant à partir du compteur_exo
+
+                        //TODO Faire un test sur les noms : void isHold() avec la liste des exo de gainage
+                        if (isHoldExo()){
+                            Intent i = new Intent(v.getContext(), HoldCountDownActivity.class);
+                            i.putExtra("next", next);
+                            i.putExtra("compteur_exo", compteur_exo);
+                            i.putExtra("compteur_serie", compteur_serie);
+                            i.putExtra("current_rest", current_rest);
+                            i.putExtra("currentExo", currentExo);
+                            i.putExtra("exoo1", exoo1);
+                            i.putExtra("isCreated", isCreated);
+                            i.putExtra("exoo2", exoo2);
+                            i.putExtra("exoo3", exoo3);
+                            i.putExtra("exoo4", exoo4);
+                            i.putExtra("exoo5", exoo5);
+                            i.putExtra("exoo6", exoo6);
+                            i.putExtra("exoo7", exoo7);
+                            i.putExtra("exoo8", exoo8);
+                            i.putExtra("name_workout", name_workout);
+                            i.putExtra("restspecial", rest);
+                            i.putExtra("pickednumber", pickednumber);
+                            i.putExtra("currentrep", currentrep);
+                            compteur_serie++;
+                            workoutDatabase();
+                            startActivity(i);
+
+
+
+                        }else{
+
                     setContentView(R.layout.activity_exercise);
-                    whichExercise();                        //Méthode permettant de savoir quel est l'exercice courant à partir du compteur_exo
 
                         /*Gestion de l'affichage de l'exo à faire apparaître*/
+
                         currentexo=(TextView)findViewById(R.id.current_exo);
                     currentserie=(TextView)findViewById(R.id.current_repserie);
                     if (currentExo != null) {
@@ -152,7 +183,7 @@ public class ProgrammActivity extends Activity implements Serializable{
                         workoutDatabase();
 
                         done=(Button)findViewById(R.id.done);
-                        done.setOnClickListener(onClick);
+                        done.setOnClickListener(onClick);}
                     }catch (Exception e){
                         //Ceci est effectué si une exception est attrapée ie si on arrive à la fin de l'entraînement
                         //Mise à jour de la base de données au niveau des répétitions effectuées
@@ -187,7 +218,7 @@ public class ProgrammActivity extends Activity implements Serializable{
                     intent.putExtra("name_workout", name_workout);
                     intent.putExtra("restspecial", rest);
                     intent.putExtra("pickednumber", pickednumber);
-                    intent.putExtra("currentrep", currentrep);//TODO
+                    intent.putExtra("currentrep", currentrep);
                     startActivity(intent);
                     break;
             }
@@ -198,7 +229,6 @@ public class ProgrammActivity extends Activity implements Serializable{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        whichExercise(); //Gère l'affichage de l'exo à effectuer
         Intent intent = getIntent();            //Récupération de données
         Bundle b = intent.getExtras();
         if(b!=null)
@@ -232,9 +262,16 @@ public class ProgrammActivity extends Activity implements Serializable{
             if (b.get("started") != null){
                 started=(boolean)b.get("started");
                 pickednumber=(int)b.get("pickednumber");
-                currentrep=(int)b.get("currentrep");//TODO
+                currentrep=(int)b.get("currentrep");
             }
 
+            //TODO Rajout d'un test
+try {
+    whichExercise(); //Gère l'affichage de l'exo à effectuer
+}catch (Exception e ){
+    Intent z =new Intent(this, EndOfWorkout.class);
+    startActivity(z);
+}
 
 
 
@@ -301,6 +338,59 @@ public class ProgrammActivity extends Activity implements Serializable{
 
         if (started) {
             try {
+
+                //TODO ICI le travail pour un exo Hold
+
+                whichExercise();
+
+                if (isHoldExo()) {
+                    Intent i = new Intent(this, HoldCountDownActivity.class);
+                    i.putExtra("next", next);
+                    i.putExtra("compteur_exo", compteur_exo);
+                    i.putExtra("compteur_serie", compteur_serie);
+                    i.putExtra("current_rest", current_rest);
+                    i.putExtra("currentExo", currentExo);
+                    i.putExtra("exoo1", exoo1);
+                    i.putExtra("isCreated", isCreated);
+                    i.putExtra("exoo2", exoo2);
+                    i.putExtra("exoo3", exoo3);
+                    i.putExtra("exoo4", exoo4);
+                    i.putExtra("exoo5", exoo5);
+                    i.putExtra("exoo6", exoo6);
+                    i.putExtra("exoo7", exoo7);
+                    i.putExtra("exoo8", exoo8);
+                    i.putExtra("name_workout", name_workout);
+                    i.putExtra("restspecial", rest);
+                    i.putExtra("pickednumber", pickednumber);
+                    i.putExtra("currentrep", currentrep);
+
+                    compteur_serie++;
+                    workoutDatabase();
+                    startActivity(i);
+                }else {
+                    setContentView(R.layout.activity_exercise);
+                    currentexo = (TextView) findViewById(R.id.current_exo);
+                    currentserie = (TextView) findViewById(R.id.current_repserie);
+                if (currentExo != null) { //Test inutile
+                    currentexo.setText(currentExo.getNom());
+                    currentserie.setText("Serie n° : " + compteur_serie + " / " + currentExo.getNbseries() + "\nReps : " + currentExo.getNbreps() + "\n " + (int) currentExo.getRepos());
+                    numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
+                    numberPicker.setMaxValue(500);
+                    numberPicker.setMinValue(0);
+                    numberPicker.setWrapSelectorWheel(false);
+                    numberPicker.setValue(currentExo.getNbreps());
+                }
+
+                compteur_serie++;
+
+                done = (Button) findViewById(R.id.done);
+                done.setOnClickListener(onClick);
+
+                }
+
+
+                //FIN AJOUT
+/*
                 setContentView(R.layout.activity_exercise);
                 whichExercise();
                 currentexo = (TextView) findViewById(R.id.current_exo);
@@ -316,10 +406,11 @@ public class ProgrammActivity extends Activity implements Serializable{
                 }
                 compteur_serie++;
 
+
                 done = (Button) findViewById(R.id.done);
-                done.setOnClickListener(onClick);
-            } catch (Exception e) {
-                Intent intent2 = new Intent(this, EndOfWorkout.class);//TODO
+                done.setOnClickListener(onClick);*/
+             } catch (Exception e) {
+            Intent intent2 = new Intent(this, EndOfWorkout.class);//TODO
                 startActivity(intent2);
             }
         }
@@ -331,11 +422,16 @@ public class ProgrammActivity extends Activity implements Serializable{
 
 
     }
-    //TODO TRAVAILLER ICI
 
-    public void purgeDatabase(){
+    public boolean isHoldExo(){
+        switch (currentExo.getNom()){
+            case "Squat Hold" :
+                return true;
 
+        }
+        return false;
     }
+
     //Met à jour la base de données en fonction de l'exo effectué
     public void updateDatabase2(int value){
         String col="";
@@ -574,7 +670,6 @@ public class ProgrammActivity extends Activity implements Serializable{
 
     }
     protected void whichExercise(){
-
         switch (compteur_exo){
             case 1:
                 currentExo=exoo1;
@@ -609,7 +704,9 @@ public class ProgrammActivity extends Activity implements Serializable{
                 current_rest=(int)currentExo.getRepos();
                 break;
 
+
         }
+
     }
 
 

@@ -657,17 +657,8 @@ Pour utiliser "Parcelable", il faut :
                         name_workout.setText("Created Programm");
 
                     }
-                    //TODO Mettre ici accès bdd aussi
-                    //myDB = new Workout_DbHelper(v.getContext());
                     SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                     String user=sharedPreferences.getString("username","");
-                    /*boolean bdd=myDB.addData(user, exoo1.getNom(),name_workout.getText().toString(), exoo1.getNbreps(), exoo1.getNbseries(), exoo1.getPoids(), (int)exoo1.getRepos(), "notdefined", 0 );
-                    if (bdd){
-                        Toast.makeText(v.getContext(), "Yeah !", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(v.getContext(), "Nooooo....", Toast.LENGTH_SHORT).show();
-                    }*/
-                    //FIN AJOUT
                     AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
                     builder.setTitle(R.string.confirm_reini_workout1m);
                             builder.setItems(R.array.initworkout, new DialogInterface.OnClickListener() {
@@ -694,6 +685,48 @@ Pour utiliser "Parcelable", il faut :
                                             startActivity(w2);
                                             break;
                                         case 3 :
+                                            perso=4;
+                                            whichPreferences();
+                                            Intent w3 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w3);
+                                            break;
+                                        case 4 :
+                                            perso=5;
+                                            whichPreferences();
+                                            Intent w4 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w4);
+                                            break;
+                                        case 5 :
+                                            perso=6;
+                                            whichPreferences();
+                                            Intent w5 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w5);
+                                            break;
+                                        case 6 :
+                                            perso=7;
+                                            whichPreferences();
+                                            Intent w6 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w6);
+                                            break;
+                                        case 7 :
+                                            perso=8;
+                                            whichPreferences();
+                                            Intent w7 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w7);
+                                            break;
+                                        case 8 :
+                                            perso=9;
+                                            whichPreferences();
+                                            Intent w8 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w8);
+                                            break;
+                                        case 9 :
+                                            perso=10;
+                                            whichPreferences();
+                                            Intent w9 = new Intent(v.getContext(), ChooseProg.class);
+                                            startActivity(w9);
+                                            break;
+                                        case 10:
                                             break;
                                     }
                                 }
@@ -711,21 +744,33 @@ Pour utiliser "Parcelable", il faut :
 
     public void saveWorkout(){
         SharedPreferences sharedPreferences=getSharedPreferences("userWorkout", Context.MODE_PRIVATE);
-        if (perso ==0) {
-
-            if (sharedPreferences.contains("nameWorkout1")) {
-                sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
-                if (sharedPreferences.contains("nameWorkout1")) {
-                    sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
-                }
-            }
-        }else if (perso==2){
+        if (perso==2){
             sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
         }else if (perso==3){
             sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
         }
+
+
+        else if (perso==4){
+            sharedPreferences = getSharedPreferences("userWorkout4", Context.MODE_PRIVATE);
+        }else if (perso==5){
+            sharedPreferences = getSharedPreferences("userWorkout5", Context.MODE_PRIVATE);
+        }else if (perso==6){
+            sharedPreferences = getSharedPreferences("userWorkout6", Context.MODE_PRIVATE);
+        }else if (perso==7){
+            sharedPreferences = getSharedPreferences("userWorkout7", Context.MODE_PRIVATE);
+        }else if (perso==8){
+            sharedPreferences = getSharedPreferences("userWorkout8", Context.MODE_PRIVATE);
+        }else if (perso==9){
+            sharedPreferences = getSharedPreferences("userWorkout9", Context.MODE_PRIVATE);
+        }else if (perso==10){
+            sharedPreferences = getSharedPreferences("userWorkout10", Context.MODE_PRIVATE);
+        }
+
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if ((getExercise(spinner1) != new Exercise())&&(getExercise(spinner1) != null)){ // &&null
+        if ((getExercise(spinner1) != new Exercise())&&(getExercise(spinner1) != null)){
+            Toast.makeText(this, spinner1.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
             editor.putString("exo1",spinner1.getSelectedItem().toString() );
             editor.putInt("reps1",exoo1.getNbreps());
             editor.putInt("series1",exoo1.getNbseries());
@@ -805,21 +850,6 @@ Pour utiliser "Parcelable", il faut :
         if (perso==1){
             Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
         }
-        if (perso==0) {
-            if (sharedPreferences.contains("nameWorkout1")) {
-                sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
-                if (sharedPreferences.contains("nameWorkout1")) {
-                    sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
-                    Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(this, "Your first workout has been saved", Toast.LENGTH_SHORT).show();
-
-            }
-        }
         if (perso==2){
             sharedPreferences = getSharedPreferences("userWorkout2", Context.MODE_PRIVATE);
             Toast.makeText(this, "Your second workout has been saved", Toast.LENGTH_SHORT).show();
@@ -827,6 +857,34 @@ Pour utiliser "Parcelable", il faut :
         }else if (perso==3){
             sharedPreferences = getSharedPreferences("userWorkout3", Context.MODE_PRIVATE);
             Toast.makeText(this, "Your third workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==4){
+            sharedPreferences = getSharedPreferences("userWorkout4", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 4th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==5){
+            sharedPreferences = getSharedPreferences("userWorkout5", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 5th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==6){
+            sharedPreferences = getSharedPreferences("userWorkout6", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 6th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==7){
+            sharedPreferences = getSharedPreferences("userWorkout7", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 7th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==8){
+            sharedPreferences = getSharedPreferences("userWorkout8", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 8th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==9){
+            sharedPreferences = getSharedPreferences("userWorkout9", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 9th workout has been saved", Toast.LENGTH_SHORT).show();
+
+        }else if (perso==10){
+            sharedPreferences = getSharedPreferences("userWorkout10", Context.MODE_PRIVATE);
+            Toast.makeText(this, "Your 10th workout has been saved", Toast.LENGTH_SHORT).show();
 
         }
         saveWorkout();
@@ -868,6 +926,8 @@ Pour utiliser "Parcelable", il faut :
     }
 
     public Exercise getExercise(Spinner s){
+
+        //Attention, il y a une méthode similaire dans ChooseProg.class
         if (s.getSelectedItem().toString().equals("Bulgarian Split")){
             return new BulgarianSplit();
         }else if (s.getSelectedItem().toString().equals("Lunge")){
@@ -875,7 +935,7 @@ Pour utiliser "Parcelable", il faut :
         }else if (s.getSelectedItem().toString().equals("Squat")){
             return new Squat();
         }else if (s.getSelectedItem().toString().equals("Squat Hold")){
-            return new Squat();                         //EN ATTENDANT !
+            return new SquatHold();
 
         }else if (s.getSelectedItem().toString().equals("Narrow Push Up")){
             return new NarrowPushUp();

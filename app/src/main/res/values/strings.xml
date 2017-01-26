@@ -48,12 +48,20 @@
     <string name="caracteristics">Caracteristics</string>
     <string name="confirm_reini_workout1m">Which workout would you like to override ?</string>
     <string name="quit">Quit workout</string>
+    <string name="main">Main Activity</string>
 
 
     <string-array name="initworkout">
         <item>The first one</item>
         <item>The second one</item>
         <item>The third one</item>
+        <item>The 4th one</item>
+        <item>The 5th one</item>
+        <item>The 6th one</item>
+        <item>The 7th one</item>
+        <item>The 8th one</item>
+        <item>The 9th one</item>
+        <item>The 10th one</item>
         <item>None of them</item>
     </string-array>
 

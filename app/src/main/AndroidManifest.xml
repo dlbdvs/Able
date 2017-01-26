@@ -103,6 +103,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".HoldCountDownActivity"
+            android:label="MainActivity">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.PROGRAMMACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
 
 

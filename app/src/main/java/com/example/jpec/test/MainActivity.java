@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         String uname=sharedPreferences.getString("username","");
         username.setText("Bienvenue "+uname+" !");
-
+        purgeDatabase();
         create_prog=(Button)findViewById(R.id.create_prog);
         choose_prog=(Button)findViewById(R.id.choose_prog);
         create_prog.setOnClickListener(onClick);
@@ -54,5 +54,11 @@ public class MainActivity extends Activity {
 
         }
     };
+
+    public void purgeDatabase(){
+        Workout_DbHelper db=new Workout_DbHelper(this);
+        db.getWritableDatabase().execSQL("DELETE FROM "+Workout_DbHelper.TABLE_NAME+" WHERE "+Workout_DbHelper.COL41+" = "+Workout_DbHelper.COL42+" = "+Workout_DbHelper.COL43+" = "+Workout_DbHelper.COL44+" = "+Workout_DbHelper.COL45+" = "+Workout_DbHelper.COL46+" = "+Workout_DbHelper.COL47+" = "+Workout_DbHelper.COL48+" = 0");
+
+    }
 
 }
