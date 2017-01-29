@@ -27,6 +27,7 @@ public class ChooseProg extends Activity {
     private Button w12;
     private Button w13;
     private Button w14;
+    private Button main;
 
 
     int compteur_exo=1;
@@ -48,6 +49,9 @@ public class ChooseProg extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chooseprog);
+        main=(Button)findViewById(R.id.main);
+        main.setOnClickListener(onClick);
+
         w1=(Button)findViewById(R.id.workout1);
         w1.setOnClickListener(onClick);
         w2=(Button)findViewById(R.id.workout2);
@@ -126,6 +130,10 @@ public class ChooseProg extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.main :
+                    Intent ii=new Intent(v.getContext(), MainActivity.class);
+                    startActivity(ii);
+                    break;
 
                 case R.id.workout1:
                     exoo1=new CloseGripPullUps(5,10,90.0);

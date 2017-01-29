@@ -46,6 +46,28 @@
             android:id="@+id/choose_prog"
             tools:ignore="ButtonStyle" />
     </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20sp"
+        android:id="@+id/logout"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        tools:ignore="ButtonStyle" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:id="@+id/test"
+        android:text="@string/pull_up_test"
+        tools:ignore="ButtonStyle" />
+</LinearLayout>
+
     </LinearLayout>
 
 

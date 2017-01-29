@@ -15,14 +15,20 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    private Button logout;
     private Button create_prog;
     private Button choose_prog;
     private TextView username;
+    private Button test;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        logout=(Button)findViewById(R.id.logout);
+        logout.setOnClickListener(onClick);
 
         username=(TextView)findViewById(R.id.jpec);
         SharedPreferences sharedPreferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -33,6 +39,8 @@ public class MainActivity extends Activity {
         choose_prog=(Button)findViewById(R.id.choose_prog);
         create_prog.setOnClickListener(onClick);
         choose_prog.setOnClickListener(onClick);
+        test=(Button)findViewById(R.id.test);
+        test.setOnClickListener(onClick);
 
 
     }
@@ -40,6 +48,10 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.logout:
+                    Intent i2=new Intent(v.getContext(), LoginActivity.class);
+                    startActivity(i2);
+                    break;
                 case R.id.create_prog:
                     Intent i = new Intent(v.getContext(), CreateProgrammActivity.class);
                     startActivity(i);
@@ -48,7 +60,10 @@ public class MainActivity extends Activity {
                 case R.id.choose_prog:
                     Intent intent =new Intent(v.getContext(), ChooseProg.class);
                     startActivity(intent);
-
+                    break;
+                case R.id.test:
+                    Intent i3 = new Intent(v.getContext(), SensorActivity.class);
+                    startActivity(i3);
                     break;
             }
 

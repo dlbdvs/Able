@@ -49,6 +49,10 @@
     <string name="confirm_reini_workout1m">Which workout would you like to override ?</string>
     <string name="quit">Quit workout</string>
     <string name="main">Main Activity</string>
+    <string name="log_out">Log out</string>
+    <string name="pullup_count">Number of pulls ups : %1$d</string>
+    <string name="pull_up_test">Pull up test</string>
+    <string name="result">Y : %1$f       up : %2$b     ev-y : %3$f</string>
 
 
     <string-array name="initworkout">
@@ -75,7 +79,6 @@
         <item>Chest</item>
         <item>Narrow Push Up</item>
         <item>Pike Push Up</item>
-        <!-- FIN AJOUTEE-->
 
     </string-array>
     
