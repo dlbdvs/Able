@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -422,6 +423,19 @@ try {
 
 
     }
+
+
+    //TODO Create an alert builder
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode== KeyEvent.KEYCODE_BACK)
+            Toast.makeText(getApplicationContext(), "back press",
+                    Toast.LENGTH_LONG).show();
+
+        return false;
+        // Disable back button    (source : stackoverflow)
+    }
+
 
     public boolean isHoldExo(){
         switch (currentExo.getNom()){

@@ -68,7 +68,6 @@
         <item>The 10th one</item>
         <item>None of them</item>
     </string-array>
-
     <string-array name="listofexos">
         <item>Leg</item>
         <item>Bulgarian Split</item>
@@ -81,18 +80,35 @@
         <item>Pike Push Up</item>
 
     </string-array>
-    
-    
-    
+<!-- Division des exos en ensemble correspondant à un muscle-->
+    <string-array name="exolist_leg">
+        <item>Squat</item>
+        <item>Squat Hold</item>
+        <item>Lunge</item>
+    </string-array>
+    <string-array name="exolist_pec">
+        <item>Narrow Push Up</item>
+        <item>Pike Push Up</item>
+    </string-array>
+
+    <!-- Fin de la division en ensemble-->
+
 
     <style name="commontext">
         <item name="android:textSize">20sp</item>
     </style>
+
     <style name="titletext">
         <item name="android:textSize">30sp</item>
     </style>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chest">Chest</string>
+    <string name="back">Back</string>
+    <string name="leg">Leg</string>
+    <string name="abs">Abs</string>
+    <string name="close">Close</string>
 
 
 </resources>

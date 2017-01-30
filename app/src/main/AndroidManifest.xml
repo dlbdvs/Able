@@ -8,13 +8,30 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ippo"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
 
+        <activity
+            android:name=".test2"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.COUNTDOWNACTIVITY" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".test"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.example.jpec.test.COUNTDOWNACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".CreateProgrammActivity"
             android:label="@string/app_name">
@@ -63,7 +80,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="Lisoune">
+            android:label="Able">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,7 +89,7 @@
         </activity>
         <activity
             android:name=".ChooseProg"
-            android:label="MainActivity">
+            android:label="Main Activity">
             <intent-filter>
                 <action android:name="com.example.jpec.test.PROGRAMMACTIVITY" />
 
@@ -83,7 +100,7 @@
 
         <activity
             android:name=".MainFrag"
-            android:label="MainFrag">
+            android:label="Main Frag">
             <intent-filter>
                 <action android:name="com.example.jpec.test.PROGRAMMACTIVITY" />
 

@@ -6,9 +6,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /*
 Objectifs :
@@ -287,7 +289,17 @@ public class CountDownActivity extends Activity {
 
     }
 
-/*
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode== KeyEvent.KEYCODE_BACK)
+            Toast.makeText(getApplicationContext(), "back press",
+                    Toast.LENGTH_LONG).show();
+
+        return false;
+        // Disable back button    (source : stackoverflow)
+    }
+
+    /*
     public void onPause() {
         countDownTimer.cancel();
         start.setText("Resume");

@@ -93,6 +93,7 @@ Il faut prendre en compte les degrés d'inclinaison du téléphone qui modifie �
         yText.setText("Y: " + event.values[1]);
         zText.setText("Z: " + event.values[2]);
         if (!init){
+            //Conditions initiales pour x, y et z
             x=event.values[0];
             y=event.values[1];
             ybis=event.values[1];

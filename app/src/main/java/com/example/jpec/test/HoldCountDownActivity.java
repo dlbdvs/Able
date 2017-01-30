@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -294,6 +295,15 @@ public class HoldCountDownActivity extends AppCompatActivity {
     }
 
 */
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(keyCode== KeyEvent.KEYCODE_BACK)
+        Toast.makeText(getApplicationContext(), "back press",
+                Toast.LENGTH_LONG).show();
+
+    return false;
+    // Disable back button. (source : stackoverflow)
+}
 
     public void cancel(){
         if (countDownTimer != null){
